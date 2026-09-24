@@ -1,0 +1,355 @@
+---
+nav_section: reference
+---
+<!doctype html>
+<meta charset="utf-8" />
+<title>Backwater Static</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e1512;
+    --bg-vignette: #080f10;
+    --raised: #171f19;
+    --raised-2: #1d2621;
+    --line: #33362a;
+    --ink: #ece6d4;
+    --ink-dim: #a49a80;
+    --ink-faint: #6b6552;
+    --brass: #c39a5a;
+    --brass-dim: #7a6438;
+    --brass-glow: rgba(195, 154, 90, 0.35);
+    --static: #ef5c93;
+    --cyan: #3fe0c9;
+    --cyan-dim: #276a5f;
+    --dread: #c46a52;
+    --dread-dim: #6b3226;
+
+    --display: "Fraunces", Georgia, serif;
+    --body: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --mono: "Space Mono", "Courier New", monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    background-image:
+      radial-gradient(ellipse 120% 60% at 50% -10%, rgba(195, 154, 90, 0.07), transparent 60%),
+      radial-gradient(ellipse 100% 40% at 85% 100%, rgba(196, 106, 82, 0.05), transparent 55%);
+  }
+
+  ::selection { background: var(--dread-dim); color: var(--ink); }
+  a { color: var(--brass); }
+
+  .back-link {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-faint);
+    text-decoration: none;
+    padding: 1rem 1.5rem 0;
+  }
+
+  .back-link:hover { color: var(--brass); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--dread); outline-offset: 3px; }
+
+  h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+  p { margin: 0 0 1.15em; }
+  p:last-child { margin-bottom: 0; }
+
+  .wrap { max-width: 700px; margin: 0 auto; padding: 0 1.5rem; }
+
+  .hero {
+    position: relative;
+    padding: 5rem 0 3.5rem;
+    text-align: center;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-vignette);
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(180deg, rgba(233, 227, 211, 0.024) 0px, rgba(233, 227, 211, 0.024) 1px, transparent 1px, transparent 3px);
+    mix-blend-mode: overlay;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--dread);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.75rem, 7.5vw, 5rem);
+    font-weight: 600;
+    font-style: italic;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .hero h1 .glow {
+    color: var(--static);
+    text-shadow: 0 0 18px rgba(239, 92, 147, 0.45), 0 0 40px rgba(239, 92, 147, 0.15);
+    animation: flicker 6s infinite steps(1, end);
+  }
+
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    92% { opacity: 1; }
+    93% { opacity: 0.35; }
+    94% { opacity: 1; }
+    95% { opacity: 0.5; }
+    96% { opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero h1 .glow { animation: none; }
+  }
+
+  .hero-subtitle {
+    margin-top: 1.1rem;
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+
+  .hero-rule {
+    width: 3.5rem;
+    height: 2px;
+    margin: 2.25rem auto 0;
+    background: linear-gradient(90deg, transparent, var(--brass), transparent);
+  }
+
+  .hero-warning {
+    margin-top: 1.75rem;
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--dread);
+    border: 1px solid var(--dread-dim);
+    background: rgba(196, 106, 82, 0.08);
+    border-radius: 999px;
+    padding: 0.4rem 1.1rem;
+  }
+
+  main { padding: 4rem 0 6rem; }
+
+  .intro {
+    color: var(--ink-dim);
+    font-size: 0.98rem;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .truth-section {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .truth-section:first-of-type { padding-top: 0; }
+  .truth-section:last-of-type { border-bottom: none; padding-bottom: 0; }
+
+  .truth-section h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-style: italic;
+    color: var(--brass);
+    margin-bottom: 1.1rem;
+  }
+
+  .truth-section p {
+    font-size: 0.98rem;
+  }
+
+  .truth-section strong { color: var(--ink); }
+
+  /* ---------- Dossier entries ---------- */
+
+  .dossier-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .dossier {
+    background: var(--raised);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--brass-dim);
+    border-radius: 3px;
+    padding: 1.35rem 1.6rem;
+    scroll-margin-top: 1.5rem;
+  }
+
+  .dossier-name {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: var(--brass);
+    margin-bottom: 0.5rem;
+  }
+
+  .dossier-tag {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--dread);
+    text-transform: uppercase;
+    vertical-align: middle;
+  }
+
+  .dossier-flavor {
+    font-style: italic;
+    color: var(--ink-dim);
+    font-size: 0.95rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .dossier-stats {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    color: var(--cyan);
+    background: var(--raised-2);
+    border-radius: 2px;
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.01em;
+  }
+
+  .dossier-stats strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  .dossier-line {
+    font-size: 0.92rem;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+
+  .dossier-line:last-child { margin-bottom: 0; }
+  .dossier-line strong { color: var(--brass); }
+
+  footer {
+    text-align: center;
+    padding: 3.5rem 1.5rem 4rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brass-dim);
+    border-top: 1px solid var(--line);
+  }
+
+  @media (max-width: 560px) {
+    .hero { padding: 4rem 0 3rem; }
+    .dossier { padding: 1.1rem 1.25rem; }
+  }
+</style>
+<link rel="stylesheet" href="assets/css/site-nav.css" />
+{% include site-nav.html %}
+
+<a class="back-link" href="gm-guide.html">&larr; Back to GM Guide</a>
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">Confidential &middot; GM Eyes Only</div>
+    <h1>NPC <span class="glow">Roster</span></h1>
+    <div class="hero-subtitle">GM Reference &middot; Chapter 06</div>
+    <div class="hero-rule"></div>
+    <div class="hero-warning">Everything on this page is spoilers</div>
+  </div>
+</div>
+
+<main class="wrap">
+  <p class="intro">The campaign's supporting cast, consolidated in one place. Marcus is established canon, gathered here from the <a href="player-primer.html">Player Primer</a> and <a href="session-1-outline.html">Session 1</a>; everyone else is new, introduced for the first time on this page. Every entry gets a real stat block, mundane or Gifted, matching the <a href="adversary-index.html">Adversary Index</a>'s own convention that even noncombatants get full numbers.</p>
+
+  <div class="dossier-list">
+    <div class="dossier" id="marcus">
+      <div class="dossier-name">Marcus <span class="dossier-tag">Established</span></div>
+      <p class="dossier-flavor">The friend group's actual center of gravity - works the door at three different bars depending on the night, remembers everyone's coffee order, has exactly one bad tattoo he still won't explain. Status as of the end of Session 1: missing. Whatever he experienced while possessed stays a genuine open question rather than a decided one.</p>
+      <p class="dossier-stats"><strong>Soak</strong> 0 &middot; <strong>Attack</strong> 2 &middot; <strong>Defense</strong> 6 &middot; <strong>Health Levels</strong> 3 &middot; <strong>Movement Rate</strong> 8m</p>
+      <p class="dossier-line"><strong>Notable Skills</strong>: Persuasion 7, Athletics 6</p>
+      <p class="dossier-line"><strong>Traits</strong>: <strong>Noncombatant</strong> - Disadvantage on all attack rolls. An ordinary person; nothing about him was ever the threat.</p>
+    </div>
+
+    <div class="dossier" id="junie-prosper">
+      <div class="dossier-name">Junie Prosper</div>
+      <p class="dossier-flavor">The Screen's bartender, and not naive about what's underneath the city - she's known for years, the same way any Quarter old-timer eventually does, and she clocked exactly what the PCs' hurried exit meant the night of the breach. Hasn't said anything yet. Waiting to see who comes back and asks the right question first.</p>
+      <p class="dossier-stats"><strong>Soak</strong> 0 &middot; <strong>Attack</strong> 2 &middot; <strong>Defense</strong> 6 &middot; <strong>Health Levels</strong> 3 &middot; <strong>Movement Rate</strong> 7m</p>
+      <p class="dossier-line"><strong>Notable Skills</strong>: Occult 8, Insight 8, Perception 7</p>
+      <p class="dossier-line"><strong>Traits</strong>: <strong>Knows Who to Ask</strong> - once per session, can point a PC toward a real lead (a name, a place, a rumor) if asked directly and respectfully. <strong>Noncombatant</strong>.</p>
+    </div>
+
+    <div class="dossier" id="reyna-delacroix">
+      <div class="dossier-name">Reyna Delacroix</div>
+      <p class="dossier-flavor">Part of the same friend group. Worked a shift the night Marcus's texts went out and never made it to The Screen - finds out after the fact, secondhand and incomplete, that something happened and Marcus is gone. A built-in audience surrogate for the party's return to normal life: she asks the questions a real friend would ask.</p>
+      <p class="dossier-stats"><strong>Soak</strong> 0 &middot; <strong>Attack</strong> 2 &middot; <strong>Defense</strong> 6 &middot; <strong>Health Levels</strong> 3 &middot; <strong>Movement Rate</strong> 8m</p>
+      <p class="dossier-line"><strong>Notable Skills</strong>: Insight 6, Persuasion 6</p>
+      <p class="dossier-line"><strong>Traits</strong>: <strong>Noncombatant</strong>.</p>
+    </div>
+
+    <div class="dossier" id="mr-doucet">
+      <div class="dossier-name">Mr. Doucet</div>
+      <p class="dossier-flavor">Landlord to at least one PC, quietly observant in the way an aging landlord who's seen every kind of tenant tends to be. Asks the small, normal questions - rent, noise, a stranger seen on the stairs - that can put real pressure on a party trying to keep new Gifts quiet without ever once being a threat himself.</p>
+      <p class="dossier-stats"><strong>Soak</strong> 0 &middot; <strong>Attack</strong> 1 &middot; <strong>Defense</strong> 5 &middot; <strong>Health Levels</strong> 3 &middot; <strong>Movement Rate</strong> 6m</p>
+      <p class="dossier-line"><strong>Notable Skills</strong>: Perception 7</p>
+      <p class="dossier-line"><strong>Traits</strong>: <strong>Noncombatant</strong>.</p>
+    </div>
+
+    <div class="dossier" id="case-officer-wendell-broussard">
+      <div class="dossier-name">Case Officer Wendell Broussard</div>
+      <p class="dossier-flavor">Site 23's investigator, assigned to account for the dead response team and the newly-Gifted individuals LA-1147 confirms exist. Builds a case, not a raid - a recurring low-key pressure that should be felt circling closer over the season, long before he's ever a fight.</p>
+      <p class="dossier-stats"><strong>Soak</strong> 0 &middot; <strong>Attack</strong> 2 &middot; <strong>Defense</strong> 6 &middot; <strong>Health Levels</strong> 3 &middot; <strong>Movement Rate</strong> 8m</p>
+      <p class="dossier-line"><strong>Notable Skills</strong>: Investigation 9, Insight 8, Persuasion 7</p>
+      <p class="dossier-line"><strong>Traits</strong>: <strong>Building the Case</strong> - Advantage on any Investigation roll specifically related to LA-1147 or its aftermath. <strong>Noncombatant</strong>.</p>
+    </div>
+
+    <div class="dossier" id="special-agent-odette-chastain">
+      <div class="dossier-name">Special Agent Odette Chastain <span class="dossier-tag">A real foil</span></div>
+      <p class="dossier-flavor">Gifted herself, years ago, in a smaller incident nobody outside the Foundation ever heard of. Processed, trained, made into exactly what they wanted. Personally requested the LA-1147 case because she knows this city better than anyone else they could send. Genuine belief in the mission sits right next to something colder underneath, and she looks at the PCs like she's looking at an old photo of herself she'd rather not have found.</p>
+      <p class="dossier-stats"><strong>Soak</strong> 0 &middot; <strong>Attack</strong> 5 &middot; <strong>Defense</strong> 7 &middot; <strong>Health Levels</strong> 5 &middot; <strong>Movement Rate</strong> 8m &middot; <strong>Ki</strong> 8</p>
+      <p class="dossier-line">Sidearm (Compact Pistol): 5, 15m/40m</p>
+      <p class="dossier-line">Gift: <strong>Forcefield</strong> (Personal Barrier), Level 4 - Hardness 6, Health Levels 5 barrier, extendable to cover one ally within Close range.</p>
+      <p class="dossier-line"><strong>Notable Skills</strong>: Insight 8, Intimidation 7, Investigation 7</p>
+      <p class="dossier-line"><strong>Traits</strong>: <strong>Recognizes Herself</strong> - Advantage on Insight rolls against a PC she's spoken with directly at least once. <strong>Doesn't Draw First</strong> - Disadvantage on her first attack roll of any encounter against a target who hasn't attacked her yet.</p>
+    </div>
+
+    <div class="dossier" id="felix-the-rat-man">
+      <div class="dossier-name">Felix, the Rat Man <span class="dossier-tag">Gifted</span></div>
+      <p class="dossier-flavor">A working root doctor, respected and a little feared, who reads cards and burns candles for people with real problems money can't fix. What most of the Quarter doesn't know is that the rats aren't just local color - they're genuinely his, hundreds of them, watching every alley he's ever worked.</p>
+      <p class="dossier-stats"><strong>Soak</strong> 1 &middot; <strong>Attack</strong> 3 &middot; <strong>Defense</strong> 7 &middot; <strong>Health Levels</strong> 4 &middot; <strong>Movement Rate</strong> 8m</p>
+      <p class="dossier-line">Gift: <strong>Animal Friendship</strong>, Level 4 (<strong>Swarm Companion</strong> Adder, <strong>Single Species</strong> Limiter: rats) - commands a swarm of rats as an Animal Companion, his influence extending to dangerous or exotic wildlife tier at this Level, though the bond itself never leaves rats.</p>
+      <p class="dossier-line"><strong>Notable Skills</strong>: Occult 9, Insight 7, Perception 8</p>
+      <p class="dossier-line"><strong>Traits</strong>: <strong>A Hundred Eyes</strong> - treats the whole Quarter as under passive surveillance by his rats; can ask what they've seen recently, once per session, the same way the Animal Friendship Gift's Speak for the Wild works.</p>
+    </div>
+  </div>
+
+  <div class="truth-section" style="border-top: 1px solid var(--line); margin-top: 2.5rem; padding-top: 2.5rem;">
+    <h2>Using This at the Table</h2>
+    <p>Not every NPC is a threat. These seven exist to make the city feel inhabited between Foundation encounters, and two of them - Broussard, Chastain - are built to escalate slowly across the season rather than show up as a fight on day one.</p>
+  </div>
+</main>
+
+<footer>Backwater Static &middot; GM Guide &middot; do not share with players</footer>
+<script src="assets/js/site-nav.js"></script>

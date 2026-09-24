@@ -1,0 +1,201 @@
+---
+nav_section: license
+---
+<!doctype html>
+<meta charset="utf-8" />
+<title>Backwater Static &middot; License</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Backwater Static runs on the free, ORC-licensed 20 Below system, and the setting itself follows the same open philosophy - except for the Adversary Index and Anomalous Objects Index, kept as Backwater Static's own reserved content." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e1512;
+    --bg-vignette: #080f10;
+    --raised: #121b1c;
+    --raised-2: #16211f;
+    --line: #223333;
+    --ink: #e4ece9;
+    --ink-dim: #8ea3a0;
+    --ink-faint: #536664;
+    --brass: #c39a5a;
+    --brass-dim: #7a6438;
+    --static: #ef5c93;
+    --static-dim: #8a3a5c;
+    --cyan: #3fe0c9;
+    --cyan-dim: #276a5f;
+    --dread: #9c4436;
+
+    --display: "Fraunces", Georgia, serif;
+    --body: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --mono: "Space Mono", "Courier New", monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    background-image:
+      radial-gradient(ellipse 120% 60% at 50% -10%, rgba(63, 224, 201, 0.055), transparent 60%),
+      radial-gradient(ellipse 100% 40% at 85% 100%, rgba(239, 92, 147, 0.06), transparent 55%);
+  }
+
+  /* ---- top nav ---- */
+
+  ::selection { background: var(--static-dim); color: var(--ink); }
+  a { color: var(--brass); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--static); outline-offset: 3px; }
+
+  h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+  p { margin: 0 0 1.15em; }
+  p:last-child { margin-bottom: 0; }
+
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; }
+
+  main { padding: 3.5rem 0 6rem; }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    text-shadow: 0 0 10px rgba(63, 224, 201, 0.3);
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-size: clamp(2.25rem, 5vw, 3rem);
+    font-weight: 600;
+    font-style: italic;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+
+  .intro {
+    color: var(--ink-dim);
+    font-size: 1.05rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .pitch-box {
+    background: var(--raised);
+    border: 1px solid var(--cyan-dim);
+    border-radius: 3px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .pitch-box em { color: var(--ink); font-style: italic; }
+
+  h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    font-style: italic;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 0.5rem;
+    margin-top: 3rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin-bottom: 1rem;
+  }
+  .breakdown-card {
+    background: var(--raised);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 1.1rem 1.35rem;
+  }
+  .breakdown-card.open { border-left: 3px solid var(--cyan); }
+  .breakdown-card.reserved { border-left: 3px solid var(--dread); }
+  .breakdown-card .label {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 0.5rem;
+  }
+  .breakdown-card.open .label { color: var(--cyan); }
+  .breakdown-card.reserved .label { color: var(--dread); }
+  .breakdown-card p { margin: 0; color: var(--ink-dim); font-size: 0.95rem; }
+
+  .legal p { color: var(--ink-dim); font-size: 0.95rem; }
+  .legal strong { color: var(--ink); font-family: var(--display); font-style: italic; font-weight: 600; }
+
+  footer {
+    color: var(--ink-faint);
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    line-height: 1.6;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+</style>
+<link rel="stylesheet" href="assets/css/site-nav.css" />
+{% include site-nav.html %}
+
+
+<main class="wrap">
+  <p class="eyebrow">Declassified</p>
+  <h1>License</h1>
+
+  <p class="intro">
+    Backwater Static runs on <a href="https://feralucce.github.io/20_Below/" target="_blank" rel="noopener">20 Below</a>,
+    a free, ORC-licensed system - and the setting follows the same open philosophy. The City, its people, its
+    history, and everything we wrote to run a game in it are free for anyone to build their own stories on.
+  </p>
+
+  <div class="pitch-box">
+    The one thing held back is the stuff built specifically to sell: the <strong>Adversary Index's</strong>
+    monsters and the <strong>Anomalous Objects Index's</strong> cursed things - our original bestiary and item
+    catalog. Everything else about Backwater Static is Licensed Material, same as 20 Below's core rules.
+  </div>
+
+  <h2>What's Open vs. Reserved</h2>
+  <div class="breakdown">
+    <div class="breakdown-card open">
+      <div class="label">Open - Licensed Material</div>
+      <p>The City itself as written here - its locations, its NPCs, its history and throughlines, the Player
+      Primer and GM Guide's narrative content, and any new mechanics introduced for the setting. Reference it,
+      remix it, run your own game in it, build your own commercial supplement on top of it.</p>
+    </div>
+    <div class="breakdown-card reserved">
+      <div class="label">Reserved - Not Licensed</div>
+      <p>The Adversary Index (47 creature stat blocks) and the Anomalous Objects Index (22 cursed or haunted
+      objects) - Backwater Static's own original bestiary and item catalog, kept back as our commercial
+      content. The title "Backwater Static" and its branding are reserved as well.</p>
+    </div>
+  </div>
+
+  <h2>The Legal Text</h2>
+  <div class="legal">
+    <p><strong>Backwater Static</strong> by Feralucce Savage is released under the ORC License, a perpetual, irrevocable open license for tabletop game mechanics and setting material, except where noted below.</p>
+
+    <p><strong>ORC Notice</strong><br>
+    This product is licensed under the ORC License located at the Library of Congress at TX 9-307-067 and available online at various locations including <a href="https://azoralaw.com/orclicense/" target="_blank" rel="noopener">azoralaw.com/orclicense</a> and others. All warranties are disclaimed as set forth therein.</p>
+
+    <p><strong>Attribution</strong><br>
+    This product is based on the following Licensed Material: <em>Backwater Static</em>, Copyright &copy; 2026 Feralucce Savage, built on <em>20 Below Core Rules</em>, Copyright &copy; 2026 Feralucce Savage.<br>
+    If you use this Licensed Material in your own published work, please credit it as follows: <em>[Title of Your Work]</em>, based on <em>Backwater Static</em>, Copyright &copy; 2026 Feralucce Savage, available at <a href="https://github.com/feralucce/Backwater_Static" target="_blank" rel="noopener">github.com/feralucce/Backwater_Static</a>.</p>
+
+    <p><strong>Reserved Material</strong><br>
+    Reserved Material elements in this product include, but are not limited to: the title "Backwater Static" and all associated branding; the Adversary Index and its 47 creature stat blocks; the Anomalous Objects Index and its 22 entries; and character names and likenesses of named NPCs where used as branding. Everything not listed here - the setting's narrative content, locations, and any new mechanics - is Licensed Material.</p>
+
+    <p><strong>Expressly Designated Licensed Material</strong><br>
+    None at this time.</p>
+  </div>
+
+  <footer>Backwater Static &middot; a 20 Below campaign</footer>
+</main>
+<script src="assets/js/site-nav.js"></script>

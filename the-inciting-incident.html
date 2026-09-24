@@ -1,0 +1,258 @@
+---
+nav_section: gm
+---
+<!doctype html>
+<meta charset="utf-8" />
+<title>Backwater Static</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e1512;
+    --bg-vignette: #080f10;
+    --raised: #171f19;
+    --raised-2: #1d2621;
+    --line: #33362a;
+    --ink: #ece6d4;
+    --ink-dim: #a49a80;
+    --ink-faint: #6b6552;
+    --brass: #c39a5a;
+    --brass-dim: #7a6438;
+    --brass-glow: rgba(195, 154, 90, 0.35);
+    --static: #ef5c93;
+    --cyan: #3fe0c9;
+    --cyan-dim: #276a5f;
+    --dread: #c46a52;
+    --dread-dim: #6b3226;
+
+    --display: "Fraunces", Georgia, serif;
+    --body: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --mono: "Space Mono", "Courier New", monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    background-image:
+      radial-gradient(ellipse 120% 60% at 50% -10%, rgba(195, 154, 90, 0.07), transparent 60%),
+      radial-gradient(ellipse 100% 40% at 85% 100%, rgba(196, 106, 82, 0.05), transparent 55%);
+  }
+
+  ::selection { background: var(--dread-dim); color: var(--ink); }
+  a { color: var(--brass); }
+
+  .back-link {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-faint);
+    text-decoration: none;
+    padding: 1rem 1.5rem 0;
+  }
+
+  .back-link:hover { color: var(--brass); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--dread); outline-offset: 3px; }
+
+  h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+  p { margin: 0 0 1.15em; }
+  p:last-child { margin-bottom: 0; }
+
+  .wrap { max-width: 700px; margin: 0 auto; padding: 0 1.5rem; }
+
+  .hero {
+    position: relative;
+    padding: 5rem 0 3.5rem;
+    text-align: center;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-vignette);
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(180deg, rgba(233, 227, 211, 0.024) 0px, rgba(233, 227, 211, 0.024) 1px, transparent 1px, transparent 3px);
+    mix-blend-mode: overlay;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--dread);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 6.5vw, 4.5rem);
+    font-weight: 600;
+    font-style: italic;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .hero h1 .glow {
+    color: var(--static);
+    text-shadow: 0 0 18px rgba(239, 92, 147, 0.45), 0 0 40px rgba(239, 92, 147, 0.15);
+    animation: flicker 6s infinite steps(1, end);
+  }
+
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    92% { opacity: 1; }
+    93% { opacity: 0.35; }
+    94% { opacity: 1; }
+    95% { opacity: 0.5; }
+    96% { opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero h1 .glow { animation: none; }
+  }
+
+  .hero-subtitle {
+    margin-top: 1.1rem;
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+
+  .hero-rule {
+    width: 3.5rem;
+    height: 2px;
+    margin: 2.25rem auto 0;
+    background: linear-gradient(90deg, transparent, var(--brass), transparent);
+  }
+
+  .hero-warning {
+    margin-top: 1.75rem;
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--dread);
+    border: 1px solid var(--dread-dim);
+    background: rgba(196, 106, 82, 0.08);
+    border-radius: 999px;
+    padding: 0.4rem 1.1rem;
+  }
+
+  main { padding: 4rem 0 6rem; }
+
+  .intro {
+    color: var(--ink-dim);
+    font-size: 0.98rem;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .truth-section {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .truth-section:first-of-type { padding-top: 0; }
+  .truth-section:last-of-type { border-bottom: none; padding-bottom: 0; }
+
+  .truth-section h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-style: italic;
+    color: var(--brass);
+    margin-bottom: 1.1rem;
+  }
+
+  .truth-section p {
+    font-size: 0.98rem;
+  }
+
+  .truth-section strong { color: var(--ink); }
+
+  .open-question {
+    background: var(--raised);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--dread);
+    border-radius: 3px;
+    padding: 1.1rem 1.25rem;
+    margin-top: 1.25rem;
+  }
+
+  .open-question-label {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--dread);
+    margin-bottom: 0.5rem;
+  }
+
+  .open-question p {
+    font-size: 0.92rem;
+    color: var(--ink-dim);
+    margin: 0;
+  }
+
+  footer {
+    text-align: center;
+    padding: 3.5rem 1.5rem 4rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brass-dim);
+    border-top: 1px solid var(--line);
+  }
+</style>
+<link rel="stylesheet" href="assets/css/site-nav.css" />
+{% include site-nav.html %}
+
+<a class="back-link" href="gm-guide.html">&larr; Back to GM Guide</a>
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">Confidential &middot; GM Eyes Only</div>
+    <h1>The Inciting <span class="glow">Incident</span></h1>
+    <div class="hero-subtitle">GM Reference &middot; Chapter 03</div>
+    <div class="hero-rule"></div>
+    <div class="hero-warning">Everything on this page is spoilers</div>
+  </div>
+</div>
+
+<main class="wrap">
+  <p class="intro">Running Marcus's possession and the party's first night as something other than human. The beat-by-beat mechanics already live in the <a href="session-1-outline.html">Session 1 Outline</a> and <a href="session-1-gm-notes.html">Session 1 GM Notes</a> - this chapter is for what those don't cover: sustaining the performance, and running what comes after.</p>
+
+  <div class="truth-section">
+    <h2>Playing Marcus, Possessed</h2>
+    <p>The Incident isn't performing a character - it's genuinely wearing Marcus, with real access to his memories, speech patterns, and relationships. That's what makes it convincing at first and what makes the tells so specific: reactions land a half-beat off, warmth that should be spontaneous reads as calibrated, decisiveness where the real Marcus would hesitate and second-guess himself. Play it as someone doing an excellent impression of a person they've studied closely, not as someone lying.</p>
+    <p>If players push past Session 1's script - corner "Marcus" with hard questions before the breach, or the group ever crosses paths with the Incident wearing someone else in a later session - it holds the ruse only as long as the questions stay answerable from Marcus's own real memories. A direct, specific challenge it can't answer from what Marcus actually knows is where it cracks, deflects, or manufactures urgency to escape the conversation (a call comes in, someone needs help, anything that ends the scene on its terms).</p>
+    <div class="open-question">
+      <div class="open-question-label">Still Open</div>
+      <p>What the real Marcus experiences while possessed - aware and trapped, blacked out entirely, or something in between - is still genuinely undecided. Worth deciding before it comes up in play (a rescued Marcus who remembers everything plays very differently than one who wakes up with a missing night), but not before it has to.</p>
+    </div>
+  </div>
+
+  <div class="truth-section">
+    <h2>The Party's First Night, Gifted</h2>
+    <p>The mechanical beat (describe your Gift manifesting) is the easy part. The harder, more useful scene is what comes after: four ordinary people who just found out they can do something extraordinary, standing in a room where people actually died, and none of them pulled a trigger. Expect real friction, not a clean group reaction - guilt over deaths they didn't choose to cause sits right next to something closer to excitement about the power itself, and those two things showing up in the same person, sometimes the same sentence, is the honest version of this scene. Some of the party will want to talk it through immediately; someone else will want to not think about it yet. Both are correct play.</p>
+    <p>A concrete way to run it: go around the table in character, one question each, no wrong answers - <em>what do you do with your hands right now</em>, or <em>what's the first thing you want to tell someone who wasn't there, and who is it</em>. Marcus's absence should sit underneath all of it without dominating the scene outright - it's the thing nobody's said out loud yet.</p>
+  </div>
+</main>
+
+<footer>Backwater Static &middot; GM Guide &middot; do not share with players</footer>
+<script src="assets/js/site-nav.js"></script>

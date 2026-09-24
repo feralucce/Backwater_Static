@@ -1,0 +1,464 @@
+---
+nav_section: sessions
+---
+<!doctype html>
+<meta charset="utf-8" />
+<title>Backwater Static</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e1512;
+    --bg-vignette: #080f10;
+    --raised: #171f19;
+    --raised-2: #1d2621;
+    --line: #33362a;
+    --ink: #ece6d4;
+    --ink-dim: #a49a80;
+    --ink-faint: #6b6552;
+    --brass: #c39a5a;
+    --brass-dim: #7a6438;
+    --brass-glow: rgba(195, 154, 90, 0.35);
+    --static: #ef5c93;
+    --cyan: #3fe0c9;
+    --cyan-dim: #276a5f;
+    --dread: #c46a52;
+    --dread-dim: #6b3226;
+
+    --display: "Fraunces", Georgia, serif;
+    --body: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --mono: "Space Mono", "Courier New", monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    background-image:
+      radial-gradient(ellipse 120% 60% at 50% -10%, rgba(195, 154, 90, 0.07), transparent 60%),
+      radial-gradient(ellipse 100% 40% at 85% 100%, rgba(196, 106, 82, 0.05), transparent 55%);
+  }
+
+  ::selection { background: var(--dread-dim); color: var(--ink); }
+  a { color: var(--brass); }
+
+  .back-link {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-faint);
+    text-decoration: none;
+    padding: 1rem 1.5rem 0;
+  }
+
+  .back-link:hover { color: var(--brass); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--dread); outline-offset: 3px; }
+
+  h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+  p { margin: 0 0 1.15em; }
+  p:last-child { margin-bottom: 0; }
+
+  .wrap { max-width: 700px; margin: 0 auto; padding: 0 1.5rem; }
+
+  .hero {
+    position: relative;
+    padding: 5rem 0 3.5rem;
+    text-align: center;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-vignette);
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(180deg, rgba(233, 227, 211, 0.024) 0px, rgba(233, 227, 211, 0.024) 1px, transparent 1px, transparent 3px);
+    mix-blend-mode: overlay;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--dread);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.75rem, 7.5vw, 5rem);
+    font-weight: 600;
+    font-style: italic;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .hero h1 .glow {
+    color: var(--static);
+    text-shadow: 0 0 18px rgba(239, 92, 147, 0.45), 0 0 40px rgba(239, 92, 147, 0.15);
+    animation: flicker 6s infinite steps(1, end);
+  }
+
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    92% { opacity: 1; }
+    93% { opacity: 0.35; }
+    94% { opacity: 1; }
+    95% { opacity: 0.5; }
+    96% { opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero h1 .glow { animation: none; }
+  }
+
+  .hero-subtitle {
+    margin-top: 1.1rem;
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+
+  .hero-rule {
+    width: 3.5rem;
+    height: 2px;
+    margin: 2.25rem auto 0;
+    background: linear-gradient(90deg, transparent, var(--brass), transparent);
+  }
+
+  .hero-warning {
+    margin-top: 1.75rem;
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--dread);
+    border: 1px solid var(--dread-dim);
+    background: rgba(196, 106, 82, 0.08);
+    border-radius: 999px;
+    padding: 0.4rem 1.1rem;
+  }
+
+  main { padding: 4rem 0 6rem; }
+
+  .toc-intro {
+    max-width: 560px;
+    margin: 0 auto 3rem;
+    color: var(--ink-dim);
+    text-align: center;
+  }
+
+  .toc-empty {
+    font-style: italic;
+    color: var(--ink-faint);
+    font-size: 0.95rem;
+    padding: 1.5rem 0;
+    border-top: 1px dashed var(--line);
+  }
+
+  .chapter-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .chapter {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 1.25rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--line);
+    align-items: baseline;
+  }
+
+  .chapter:first-child { padding-top: 0; }
+  .chapter:last-child { border-bottom: none; }
+
+  .chapter-num {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--brass-dim);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .chapter-title {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.35rem;
+  }
+
+  .chapter-desc {
+    color: var(--ink-dim);
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  .chapter-status {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.12rem 0.6rem;
+    margin-top: 0.6rem;
+  }
+
+  .chapter-status.built {
+    color: var(--cyan);
+    border-color: var(--cyan-dim);
+  }
+
+  a.chapter {
+    text-decoration: none;
+    color: inherit;
+    transition: padding-left 0.15s ease;
+  }
+
+  a.chapter:hover {
+    padding-left: 0.35rem;
+  }
+
+  a.chapter:hover .chapter-title {
+    color: var(--brass);
+  }
+
+  .premise {
+    background: var(--raised);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 1.5rem 1.75rem;
+    margin-bottom: 3rem;
+  }
+
+  .premise-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--dread);
+    margin-bottom: 0.75rem;
+  }
+
+  .premise p {
+    color: var(--ink-dim);
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  .premise strong { color: var(--ink); }
+
+  .beat-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .beat {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 1.25rem;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .beat:first-child { padding-top: 0; }
+  .beat:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .beat-num {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--brass-dim);
+    font-variant-numeric: tabular-nums;
+    padding-top: 0.2rem;
+  }
+
+  .beat-title {
+    font-family: var(--display);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--brass);
+    margin-bottom: 0.6rem;
+  }
+
+  .beat p {
+    color: var(--ink);
+    font-size: 0.96rem;
+    margin: 0 0 0.75rem;
+  }
+
+  .beat p:last-child { margin-bottom: 0; }
+
+  .beat-gm-notes {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    color: var(--dread);
+    margin-top: 0.15rem;
+  }
+
+  .beat-gm-notes:hover { color: var(--brass); }
+
+  .beat p.aside {
+    color: var(--ink-dim);
+    font-size: 0.88rem;
+    font-style: italic;
+  }
+
+  .toc-section {
+    margin-bottom: 4rem;
+  }
+
+  .toc-section:last-child {
+    margin-bottom: 0;
+  }
+
+  .toc-section-heading {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--dread);
+    margin: 0 0 1.25rem;
+  }
+
+  .toc-section-heading.ref {
+    color: var(--brass-dim);
+  }
+
+  footer {
+    text-align: center;
+    padding: 3.5rem 1.5rem 4rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brass-dim);
+    border-top: 1px solid var(--line);
+  }
+
+  @media (max-width: 560px) {
+    .hero { padding: 4rem 0 3rem; }
+    .chapter { grid-template-columns: 2rem 1fr; gap: 0.85rem; }
+    .chapter-title { font-size: 1.2rem; }
+  }
+</style>
+<link rel="stylesheet" href="assets/css/site-nav.css" />
+{% include site-nav.html %}
+
+<a class="back-link" href="index.html">&larr; Back to Backwater Static</a>
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">Confidential &middot; GM Eyes Only</div>
+    <h1>Backwater <span class="glow">Static</span></h1>
+    <div class="hero-subtitle">Session 1 &mdash; Chapter 01</div>
+    <div class="hero-rule"></div>
+    <div class="hero-warning">Everything past this line is spoilers</div>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="premise">
+    <div class="premise-label">Premise Recap &mdash; GM Only</div>
+    <p>The Inciting Incident escaped Foundation containment during a transport handoff &mdash; a courier who never actually verified the containment field before departure (Section 4 of the transport checklist, skipped). It's been drifting host to host since, until it settled into <strong>Marcus</strong>: well-liked, socially central, exactly the kind of host that can pull a group together fast. Its agenda in this host is singular &mdash; it wants the people who caged it to pay, and it needs hands it can't grow on its own to do that.</p>
+  </div>
+
+  <div class="beat-list">
+
+    <div class="beat">
+      <div class="beat-num">01</div>
+      <div>
+        <div class="beat-title">The Call</div>
+        <p>Marcus's texts go out (see the <a href="player-primer.html">Player Primer</a>) &mdash; urgent, a little manic, insistent everyone come to The Screen tonight. They read as him, because the Incident is good at wearing people, not because Marcus is still steering.</p>
+        <a class="beat-gm-notes" href="session-1-gm-notes.html#beat-01">GM Notes &rarr;</a>
+      </div>
+    </div>
+
+    <div class="beat">
+      <div class="beat-num">02</div>
+      <div>
+        <div class="beat-title">Arrival at The Screen</div>
+        <p>Marcus is off in a way the PCs notice immediately &mdash; too calm for someone who sent five panicked texts, or too intense, laughing a half-beat late, eye contact that holds a fraction too long. Not a subtle tell. Something is wrong with him and everyone at the table should feel it within the first minute.</p>
+        <a class="beat-gm-notes" href="session-1-gm-notes.html#beat-02">GM Notes &rarr;</a>
+      </div>
+    </div>
+
+    <div class="beat">
+      <div class="beat-num">03</div>
+      <div>
+        <div class="beat-title">The Ask, Interrupted</div>
+        <p>Marcus starts to explain &mdash; he was taken, he got out, whoever took him is still looking &mdash; before he can finish, the Foundation breaches. A response team (Field Agent/Breacher-tier, see the <a href="adversary-index.html">Adversary Index</a>) hits The Screen. They found the Incident's signature faster than expected.</p>
+        <a class="beat-gm-notes" href="session-1-gm-notes.html#beat-03">GM Notes &rarr;</a>
+      </div>
+    </div>
+
+    <div class="beat">
+      <div class="beat-num">04</div>
+      <div>
+        <div class="beat-title">The Flash</div>
+        <p>Mid-breach, the Incident makes its move: it exits Marcus in a flash of light. Every PC present gets their Gift, activated in the same instant &mdash; no ritual, no choice, no time to process it. Every Foundation agent caught in the flash dies. The PCs' first act as Gifted people is standing in a room that just went from a bar fight to a body count, and none of them pulled a trigger.</p>
+        <a class="beat-gm-notes" href="session-1-gm-notes.html#beat-04">GM Notes &rarr;</a>
+      </div>
+    </div>
+
+    <div class="beat">
+      <div class="beat-num">05</div>
+      <div>
+        <div class="beat-title">Second Wave</div>
+        <p>The Flash barely finishes before a second team hits the door &mdash; small, only two or three agents, dispatched the moment the first team's channel went dark and nobody answered. Small enough to be a real fight for four newly-Gifted PCs who just watched their first act as Gifted people end a room full of people. This one they can actually choose to win.</p>
+        <a class="beat-gm-notes" href="session-1-gm-notes.html#beat-05">GM Notes &rarr;</a>
+      </div>
+    </div>
+
+    <div class="beat">
+      <div class="beat-num">06</div>
+      <div>
+        <div class="beat-title">The Runaway</div>
+        <p>Before the second team's even down, it's clear why the Foundation didn't just send one team twice: a full response is inbound, task-force tier, the kind of numbers this isn't a fight you win. This beat is a flee, not a fight &mdash; the real tension is what the party does with an unconscious Marcus while the clock runs out. If they try to get him clear instead of just getting themselves clear, he doesn't make it out with them anyway &mdash; lost in the chaos of the retreat, taken by someone or something nobody gets a clean look at. Trying to save him is what costs them the chance to actually save him.</p>
+        <a class="beat-gm-notes" href="session-1-gm-notes.html#beat-06">GM Notes &rarr;</a>
+      </div>
+    </div>
+
+    <div class="beat">
+      <div class="beat-num">07</div>
+      <div>
+        <div class="beat-title">The Break</div>
+        <p>Marcus &mdash; no longer host to anything &mdash; is unconscious by the time the Flash goes off, and gone by the time the dust from the retreat settles, wherever the party landed. The Incident itself moves on, wherever it goes next. The session ends with the Foundation now missing a response team, aware specific new Gifted individuals exist in New Orleans, and the PCs holding power they didn't ask for, over a scene they'll have to explain to no one but themselves &mdash; and a friend they'll have to go looking for.</p>
+        <a class="beat-gm-notes" href="session-1-gm-notes.html#beat-07">GM Notes &rarr;</a>
+      </div>
+    </div>
+
+    <div class="beat">
+      <div class="beat-num">08</div>
+      <div>
+        <div class="beat-title">The Aftermath</div>
+        <p>The dead response team leaves real material behind &mdash; the Foundation runs lean and fast, not spotless. Hand this to the players directly: <a href="evidence-la-1147.html">Case File LA-1147</a> (opens in a new tab, no link back &mdash; it's meant to stand alone as something they're holding, not a page in this site). It contains the Foundation's own dossier on the Incident confirming it was riding Marcus by name, the transport manifest documenting exactly how it got loose, credentials for the two dead agents, an item requisition tag, and the item itself &mdash; a <strong>Portable Severance Anchor</strong>, a Foundation extraction tool that never got the chance to be used tonight.</p>
+        <p class="aside">See <a href="the-organization.html">The Organization</a> for the full picture: this campaign's Foundation runs more like Warehouse 13 than a pure containment bureau &mdash; they field-issue anomalous items to operational teams as tools, not just study them in a vault. The requisition tag in the evidence packet is the first concrete proof of that the PCs will see.</p>
+        <a class="beat-gm-notes" href="session-1-gm-notes.html#beat-08">GM Notes &rarr;</a>
+      </div>
+    </div>
+
+  </div>
+
+
+</main>
+
+<footer>Backwater Static &middot; GM Guide &middot; do not share with players</footer>
+<script src="assets/js/site-nav.js"></script>

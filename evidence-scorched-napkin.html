@@ -1,0 +1,153 @@
+---
+nav_section: maps
+---
+<!doctype html>
+<meta charset="utf-8" />
+<title>Backwater Static</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #ded6bc;
+    --paper-raised: #f2ecd8;
+    --paper-shadow: #c7bd9c;
+    --ink: #2a2620;
+    --ink-dim: #5c5646;
+    --stamp-red: #a3382b;
+    --line: #b8ac83;
+
+    --stamp: "Special Elite", "Courier New", monospace;
+    --type: "Courier Prime", "Courier New", monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--type);
+    font-size: 1rem;
+    line-height: 1.6;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(0,0,0,0.015) 0px, rgba(0,0,0,0.015) 1px, transparent 1px, transparent 3px),
+      radial-gradient(ellipse 140% 80% at 50% 0%, rgba(0,0,0,0.06), transparent 60%);
+  }
+
+  .wrap { max-width: 720px; margin: 0 auto; padding: 3rem 1.25rem 5rem; }
+
+  .masthead {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .masthead .eyebrow {
+    font-family: var(--type);
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+
+  .masthead h1 {
+    font-family: var(--stamp);
+    font-weight: 400;
+    font-size: 1.9rem;
+    margin: 0.4rem 0 0;
+    letter-spacing: 0.02em;
+  }
+
+  .doc {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    box-shadow: 0 10px 26px rgba(0,0,0,0.18), 0 1px 0 rgba(255,255,255,0.3) inset;
+    padding: 2rem 2.1rem 2.25rem;
+    margin: 2.5rem 0;
+    position: relative;
+    transform: rotate(-0.4deg);
+  }
+
+  .doc-kicker {
+    font-family: var(--type);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 0.6rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .item-desc {
+    font-style: italic;
+    color: var(--ink-dim);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .handwritten {
+    font-family: "Special Elite", cursive;
+    font-size: 0.95rem;
+    color: #3a3226;
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--line);
+    transform: rotate(-0.6deg);
+  }
+
+  .handwritten:first-of-type {
+    border-top: none;
+    padding-top: 0;
+    margin-top: 0;
+  }
+
+  .doc.burned {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 76%, 95% 80%, 98% 87%, 90% 90%, 94% 96%, 84% 100%, 0% 100%);
+  }
+
+  .doc.burned::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(200deg, transparent 58%, rgba(50, 26, 12, 0.18) 76%, rgba(28, 14, 6, 0.55) 90%, rgba(14, 6, 2, 0.85) 100%);
+    mix-blend-mode: multiply;
+  }
+
+  footer {
+    text-align: center;
+    font-family: var(--type);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    padding: 2rem 1.5rem 3rem;
+  }
+
+  @media (max-width: 560px) {
+    .doc { padding: 1.5rem 1.4rem 1.75rem; }
+  }
+</style>
+<link rel="stylesheet" href="assets/css/site-nav.css" />
+{% include site-nav.html %}
+
+<div class="wrap">
+  <div class="masthead">
+    <div class="eyebrow">Recovered &middot; The Screen &middot; Tonight</div>
+    <h1>Scorched Napkin</h1>
+  </div>
+
+  <div class="doc burned">
+    <div class="doc-kicker">Recovered On Scene &middot; Cocktail Napkin, Scorched</div>
+    <p class="item-desc">A cheap paper cocktail napkin, curled black along one edge like it was held too close to a candle and pulled back too late. The handwriting is cramped, pressed hard enough to tear the paper in places &mdash; whoever wrote this went over some words two and three times.</p>
+    <div class="handwritten">the cage the cage the cage.</div>
+    <div class="handwritten">POLAND AVE. by the water. where the containers are stacked so high you cant see the fence behind them. thats where. thats where they had me, the green room that hummed all night</div>
+    <div class="handwritten">i counted the days by the ferry horn</div>
+  </div>
+
+</div>
+
+<footer>Backwater Static &middot; Session 1 Evidence</footer>
+<script src="assets/js/site-nav.js"></script>

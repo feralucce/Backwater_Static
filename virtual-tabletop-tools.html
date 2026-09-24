@@ -1,0 +1,279 @@
+---
+nav_section: players
+---
+<!doctype html>
+<meta charset="utf-8" />
+<title>Backwater Static</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e1512;
+    --bg-vignette: #080f10;
+    --raised: #171f19;
+    --raised-2: #1d2621;
+    --line: #33362a;
+    --ink: #ece6d4;
+    --ink-dim: #a49a80;
+    --ink-faint: #6b6552;
+    --brass: #c39a5a;
+    --brass-dim: #7a6438;
+    --static: #ef5c93;
+    --cyan: #3fe0c9;
+    --cyan-dim: #276a5f;
+    --dread: #c46a52;
+    --dread-dim: #6b3226;
+
+    --display: "Fraunces", Georgia, serif;
+    --body: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --mono: "Space Mono", "Courier New", monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    background-image:
+      radial-gradient(ellipse 120% 60% at 50% -10%, rgba(63, 224, 201, 0.06), transparent 60%),
+      radial-gradient(ellipse 100% 40% at 85% 100%, rgba(195, 154, 90, 0.05), transparent 55%);
+  }
+
+  ::selection { background: var(--cyan-dim); color: var(--ink); }
+  a { color: var(--cyan); }
+
+  .back-link {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-faint);
+    text-decoration: none;
+    padding: 1rem 1.5rem 0;
+  }
+  .back-link:hover { color: var(--brass); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+
+  h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+  p { margin: 0 0 1.15em; }
+  p:last-child { margin-bottom: 0; }
+
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 1.5rem; }
+
+  .hero {
+    position: relative;
+    padding: 5rem 0 3.5rem;
+    text-align: center;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-vignette);
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(180deg, rgba(233, 227, 211, 0.024) 0px, rgba(233, 227, 211, 0.024) 1px, transparent 1px, transparent 3px);
+    mix-blend-mode: overlay;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-size: clamp(2.5rem, 6.5vw, 4rem);
+    font-weight: 600;
+    font-style: italic;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .hero-subtitle {
+    margin-top: 1.1rem;
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+  .hero-rule {
+    width: 3.5rem;
+    height: 2px;
+    margin: 2.25rem auto 0;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  }
+
+  main { padding: 4rem 0 6rem; }
+
+  .intro {
+    color: var(--ink-dim);
+    font-size: 0.98rem;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .tool-card {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .tool-card:first-of-type { padding-top: 0; }
+  .tool-card:last-of-type { border-bottom: none; padding-bottom: 0; }
+
+  .tool-name {
+    font-size: 1.6rem;
+    font-weight: 600;
+    font-style: italic;
+    color: var(--cyan);
+    margin-bottom: 0.3rem;
+  }
+  .tool-tag {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-bottom: 1.1rem;
+  }
+  .tool-card p { font-size: 0.98rem; }
+  .tool-card strong { color: var(--ink); }
+
+  .install-box {
+    background: var(--raised);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--cyan);
+    border-radius: 4px;
+    padding: 1.1rem 1.3rem;
+    margin: 1.3rem 0;
+  }
+  .install-box .label {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 0.5rem;
+  }
+  .install-box code {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    color: var(--ink);
+    word-break: break-all;
+    user-select: all;
+  }
+
+  .steps {
+    margin: 0;
+    padding-left: 1.3rem;
+    font-size: 0.95rem;
+    color: var(--ink-dim);
+  }
+  .steps li { margin-bottom: 0.5rem; }
+  .steps li:last-child { margin-bottom: 0; }
+  .steps strong { color: var(--ink); }
+
+  .repo-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--brass);
+  }
+
+  .note {
+    font-size: 0.88rem;
+    color: var(--ink-faint);
+    margin-top: 1.3rem;
+    padding-top: 1.1rem;
+    border-top: 1px dashed var(--line);
+  }
+
+  footer {
+    text-align: center;
+    padding: 3.5rem 1.5rem 4rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brass-dim);
+    border-top: 1px solid var(--line);
+  }
+</style>
+<link rel="stylesheet" href="assets/css/site-nav.css" />
+{% include site-nav.html %}
+
+<a class="back-link" href="gm-guide.html">&larr; Back to GM Guide</a>
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">Reference &middot; Owlbear Rodeo</div>
+    <h1>Virtual Tabletop Tools</h1>
+    <div class="hero-subtitle">Three extensions built for 20 Below</div>
+    <div class="hero-rule"></div>
+  </div>
+</div>
+
+<main class="wrap">
+  <p class="intro">Three <a href="https://www.owlbear.rodeo/" target="_blank" rel="noopener">Owlbear Rodeo</a> extensions built specifically for 20 Below's rules, for running this campaign at a real virtual table. None of them touch a character sheet directly - they work off character JSON files exported from the <a href="https://feralucce.github.io/20_Below/app/" target="_blank" rel="noopener">20 Below character creator</a>'s Sheet step, so anyone can use them without giving up their own copy of the app.</p>
+
+  <div class="tool-card">
+    <div class="tool-name">20 Below Dice</div>
+    <div class="tool-tag">Player-facing &middot; roller</div>
+    <p>Rolls the actual game mechanic instead of a generic dice box: the core 2d10 roll-under Skill check (Attribute + Difficulty, with the Element tickbox, Skill Tier, and Advantage/Disadvantage all handled for you), weapon Damage resolved die-by-die against a target's Soak/Presence/Psyche, Initiative, and a contested Potence-style Pool. Every roll posts to a log visible to everyone in the room, like an announced roll at a real table.</p>
+    <p>Optionally load your own character in its <strong>Char</strong> tab (read-only - it doesn't edit anything) and the roller links to it: picking a Skill fills in its Tier, clicking an Element fills in that Attribute, and Damage/Init/Pool get one-click fills from your sub-stats.</p>
+    <div class="install-box">
+      <div class="label">Install URL - paste into Owlbear Rodeo's Add Extension dialog</div>
+      <code>https://feralucce.github.io/20_Below_Dice/manifest.json</code>
+    </div>
+    <a class="repo-link" href="https://github.com/feralucce/20_Below_Dice" target="_blank" rel="noopener">github.com/feralucce/20_Below_Dice &rarr;</a>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">20 Below Roster</div>
+    <div class="tool-tag">GM-facing &middot; lookup</div>
+    <p>A GM's own roster, not a player tool. Load every player's character JSON alongside any NPC exports, get them as a simple list, click a name to see their full sheet - Figured Characteristics, Attributes, Skills, Boons, Resources, Gifts, Flaws, Scars. No editing, no dice, nothing but the lookup you actually need mid-scene when someone asks "wait, what's my Defense again?" or you need an NPC's stats on short notice.</p>
+    <p>The roster persists between sessions (saved to your browser), so it only needs to be built once and then just grows as new NPCs get exported.</p>
+    <div class="install-box">
+      <div class="label">Install URL - paste into Owlbear Rodeo's Add Extension dialog</div>
+      <code>https://feralucce.github.io/20_Below_Roster/manifest.json</code>
+    </div>
+    <a class="repo-link" href="https://github.com/feralucce/20_Below_Roster" target="_blank" rel="noopener">github.com/feralucce/20_Below_Roster &rarr;</a>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">20 Below Bestiary</div>
+    <div class="tool-tag">GM-facing &middot; scene tokens</div>
+    <p>Roster's counterpart for monsters and NPCs, but this one touches the scene. Load whichever monster JSONs you've prepped for tonight, get them as a list, and drop a real token onto the map with one click - centered on your current view with a small random offset so repeated clicks don't stack. Anything without finished token art yet gets a generated placeholder (colored ring, initials) instead, so a missing image never blocks play.</p>
+    <p>Click a name to see its full sheet, same layout as Roster. The loaded list persists between sessions (saved to your browser).</p>
+    <div class="install-box">
+      <div class="label">Install URL - paste into Owlbear Rodeo's Add Extension dialog</div>
+      <code>https://feralucce.github.io/20_Below_Bestiary/manifest.json</code>
+    </div>
+    <a class="repo-link" href="https://github.com/feralucce/20_Below_Bestiary" target="_blank" rel="noopener">github.com/feralucce/20_Below_Bestiary &rarr;</a>
+  </div>
+
+  <div class="tool-card">
+    <div class="tool-name">Installing an Extension</div>
+    <div class="tool-tag">How-to</div>
+    <ol class="steps">
+      <li>Open your room in Owlbear Rodeo and click the <strong>puzzle-piece icon</strong> in the left toolbar to open the Extensions panel.</li>
+      <li>Click <strong>Add Extension</strong> (or the "+" at the top of that panel).</li>
+      <li>Paste in the install URL for the tool you want (above) and confirm.</li>
+      <li>The extension's icon appears in your room's action bar - click it any time to open the tool.</li>
+    </ol>
+    <p class="note">Extensions are installed per Owlbear Rodeo account, not per room - once added, they're available in every room you open. If a tool ever looks broken or stuck after an update (blank panel, missing icon), removing it and re-adding it with the same URL usually fixes it - Owlbear can hold onto a stale copy of the install info otherwise.</p>
+  </div>
+</main>
+
+<footer>Backwater Static &middot; GM Guide</footer>
+<script src="assets/js/site-nav.js"></script>

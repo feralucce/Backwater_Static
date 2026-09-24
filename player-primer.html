@@ -1,0 +1,447 @@
+---
+nav_section: players
+---
+<!doctype html>
+<meta charset="utf-8" />
+<title>Backwater Static</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e1512;
+    --bg-vignette: #080f10;
+    --raised: #121b1c;
+    --raised-2: #16211f;
+    --line: #223333;
+    --ink: #e4ece9;
+    --ink-dim: #8ea3a0;
+    --ink-faint: #536664;
+    --brass: #c39a5a;
+    --brass-dim: #7a6438;
+    --static: #ef5c93;
+    --static-dim: #8a3a5c;
+    --cyan: #3fe0c9;
+    --cyan-dim: #276a5f;
+    --dread: #9c4436;
+
+    --display: "Fraunces", Georgia, serif;
+    --body: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --mono: "Space Mono", "Courier New", monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    background-image:
+      radial-gradient(ellipse 120% 60% at 50% -10%, rgba(63, 224, 201, 0.055), transparent 60%),
+      radial-gradient(ellipse 100% 40% at 85% 100%, rgba(239, 92, 147, 0.06), transparent 55%);
+  }
+
+  /* ---- top nav ---- */
+
+  ::selection {
+    background: var(--static-dim);
+    color: var(--ink);
+  }
+
+  a { color: var(--brass); }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--static);
+    outline-offset: 3px;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--display);
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  p { margin: 0 0 1.15em; }
+  p:last-child { margin-bottom: 0; }
+
+  .wrap {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  /* ---------- Hero ---------- */
+
+  .hero {
+    position: relative;
+    padding: 5.5rem 0 4rem;
+    text-align: center;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-vignette);
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(
+      180deg,
+      rgba(233, 227, 211, 0.028) 0px,
+      rgba(233, 227, 211, 0.028) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    mix-blend-mode: overlay;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 600;
+    font-style: italic;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    position: relative;
+    display: inline-block;
+  }
+
+  .hero h1 .flicker {
+    color: var(--static);
+    text-shadow: 0 0 18px rgba(239, 92, 147, 0.45), 0 0 40px rgba(239, 92, 147, 0.15);
+    animation: flicker 6s infinite steps(1, end);
+  }
+
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    92% { opacity: 1; }
+    93% { opacity: 0.35; }
+    94% { opacity: 1; }
+    95% { opacity: 0.5; }
+    96% { opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero h1 .flicker { animation: none; }
+  }
+
+  .hero-subtitle {
+    margin-top: 1.1rem;
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    text-shadow: 0 0 12px rgba(63, 224, 201, 0.35);
+  }
+
+  .hero-rule {
+    width: 3.5rem;
+    height: 2px;
+    margin: 2.25rem auto 0;
+    background: linear-gradient(90deg, transparent, var(--static), var(--cyan), transparent);
+  }
+
+  /* ---------- Sections ---------- */
+
+  main { padding: 4.5rem 0 6rem; }
+
+  .section {
+    max-width: 640px;
+    margin: 0 auto 4.5rem;
+  }
+
+  .section:last-child { margin-bottom: 0; }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--brass-dim);
+    margin-bottom: 0.6rem;
+  }
+
+  .screen-panel .section-label {
+    color: var(--cyan-dim);
+  }
+
+  .section h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 1.4rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .section p {
+    color: var(--ink);
+  }
+
+  .section p.lede {
+    font-size: 1.15rem;
+    color: var(--ink);
+  }
+
+  .dim { color: var(--ink-dim); }
+
+  /* ---------- The Screen: laminated sign panel ---------- */
+
+  .screen-panel {
+    max-width: 680px;
+    margin: 0 auto 4.5rem;
+    background: var(--raised);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 2.25rem 2.25rem 2rem;
+    position: relative;
+    box-shadow: 0 0 0 1px rgba(63, 224, 201, 0.09), 0 12px 40px rgba(0,0,0,0.35);
+  }
+
+  .screen-panel::before {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border: 1px dashed rgba(239, 92, 147, 0.25);
+    border-radius: 2px;
+    pointer-events: none;
+  }
+
+  .screen-marquee {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.2em;
+    color: var(--static);
+    text-shadow: 0 0 14px rgba(239, 92, 147, 0.5);
+    margin-bottom: 0.4rem;
+  }
+
+  .screen-address {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--cyan-dim);
+    letter-spacing: 0.04em;
+    margin-bottom: 1.5rem;
+  }
+
+  .screen-panel h2 {
+    display: none;
+  }
+
+  .screen-panel p {
+    color: var(--ink);
+  }
+
+  /* ---------- Marcus's texts ---------- */
+
+  .texts {
+    max-width: 460px;
+    margin: 1.75rem auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .text-bubble {
+    align-self: flex-end;
+    max-width: 82%;
+    background: var(--raised-2);
+    border: 1px solid var(--line);
+    border-right: 2px solid var(--cyan-dim);
+    border-radius: 16px 16px 4px 16px;
+    padding: 0.55rem 0.95rem;
+    font-family: var(--body);
+    font-size: 0.95rem;
+    line-height: 1.45;
+    color: var(--ink);
+  }
+
+  .text-meta {
+    align-self: flex-end;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    margin-top: 0.4rem;
+  }
+
+  .after-texts {
+    margin-top: 1.75rem;
+    font-style: italic;
+    color: var(--ink-dim);
+    text-align: center;
+  }
+
+  /* ---------- OOC note: index card ---------- */
+
+  .ooc-note {
+    max-width: 640px;
+    margin: 5.5rem auto 0;
+    background: #ece6d2;
+    color: #2a2620;
+    border-radius: 2px;
+    padding: 2rem 2.25rem 2.25rem;
+    position: relative;
+    transform: rotate(-0.6deg);
+    box-shadow: 0 18px 45px rgba(0,0,0,0.45), 0 2px 0 rgba(0,0,0,0.15);
+  }
+
+  .ooc-note::before,
+  .ooc-note::after {
+    content: "";
+    position: absolute;
+    top: -10px;
+    width: 46px;
+    height: 20px;
+    background: rgba(233, 227, 211, 0.55);
+    border: 1px solid rgba(0,0,0,0.08);
+    transform: rotate(-4deg);
+  }
+
+  .ooc-note::before { left: 24px; }
+  .ooc-note::after { right: 28px; transform: rotate(3deg); }
+
+  .ooc-label {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--dread);
+    margin-bottom: 0.9rem;
+  }
+
+  .ooc-note h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    font-style: italic;
+    color: #201d18;
+    margin-bottom: 0.9rem;
+  }
+
+  .ooc-note p {
+    color: #2a2620;
+    font-size: 0.98rem;
+  }
+
+  .ooc-note ul {
+    margin: 0 0 1.15em;
+    padding-left: 1.3rem;
+  }
+
+  .ooc-note li {
+    margin-bottom: 0.35rem;
+  }
+
+  .ooc-note strong { color: #17140f; }
+
+  /* ---------- Footer ---------- */
+
+  footer {
+    text-align: center;
+    padding: 3.5rem 1.5rem 4rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cyan-dim);
+    border-top: 1px solid var(--line);
+  }
+
+  /* ---------- Responsive ---------- */
+
+  @media (max-width: 560px) {
+    .hero { padding: 4rem 0 3rem; }
+    .screen-panel, .ooc-note { padding: 1.5rem 1.35rem 1.75rem; }
+    .section h2 { font-size: 1.6rem; }
+  }
+</style>
+<link rel="stylesheet" href="assets/css/site-nav.css" />
+{% include site-nav.html %}
+
+
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">Session Zero &middot; Player Primer</div>
+    <h1>Backwater <span class="flicker">Static</span></h1>
+    <div class="hero-subtitle">Undertow in the Big Uneasy</div>
+    <div class="hero-rule"></div>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <section class="section">
+    <div class="section-label">01 &mdash; The City</div>
+    <h2>New Orleans doesn't hide what it is</h2>
+    <p class="lede">Every rumor here gets sold twice &mdash; once as an authentic ghost tour, once as a T-shirt.</p>
+    <p>Marie Laveau's tomb wears a hundred years of tourist X's. Anne Rice built an empire two blocks from the Quarter. The city knows exactly what people want to believe about it, and it is happy, endlessly, to sell it to them.</p>
+    <p>That's the trick. The real thing was never for sale.</p>
+    <p>Ask a bartender who's worked the Quarter thirty years, and if they trust you, they'll tell you which streets flood on a clear night. Which houses have never sold twice. Which missing-person cases the local news quietly stopped covering, years before anyone official said why. Not ghosts. Not curses. Something with rules nobody's ever fully mapped, patient enough to sit out a hurricane season, organized enough that not one word of it has ever made the six o'clock news.</p>
+    <p>There are still three blocks in the Lower Nine the city never rebuilt. Officially it's soil contamination, a paperwork snarl nobody's gotten around to untangling in twenty years. Every construction crew that's ever broken ground out there has walked off the job inside a week, and no two of them give the same reason when you ask. The lots stay empty. The grass grows up through the old foundations anyway, right on schedule, like something's still watering it.</p>
+    <p>It isn't just the old ruins. A woman on your block swears her cat won't walk past a certain storm drain anymore, hasn't in months. She won't say what changed and the cat isn't talking, either. The guy who runs the corner store stopped restocking a certain aisle after a delivery went missing between the truck and the door, eleven feet, no camera angle that explains it. Small stuff. The kind of thing you'd laugh off on its own. It only stops being funny once you notice how many people have a story exactly like it, and how carefully none of them ever tell it to a stranger.</p>
+    <p class="dim">You live here. Some of you have always lived here. Some of you jumped into the depths more recently than that. Either way, until tonight, none of it had anything to do with you.</p>
+  </section>
+
+  <div class="screen-panel">
+    <div class="section-label">02 &mdash; Tonight</div>
+    <div class="screen-marquee">THE SCREEN</div>
+    <div class="screen-address">through an unmarked door in the alley between Turtle Bay and The Abbey, decatur street</div>
+    <h2>The Screen</h2>
+    <p>The building itself predates the neon by more than a century - what's now the bar was once quarters built to house enslaved people, tucked back off the street the way that kind of building always was. The Quarter doesn't put a plaque on it. Whoever's renovated the place since never fully hid it either - the brickwork under all that scavenged tech is exactly what it looks like, if you know what you're looking at.</p>
+    <p>Somebody's cousin got really into a cyberpunk movie back in the day and never fully recovered. The result: a shotgun-style dive with an entire back wall of scavenged CRTs and dead flatscreens stacked floor to ceiling behind the bar, no two the same size, half of them looping static and the other half just off, wired up like somebody was trying to build a LoTek hideout on a dollar-store budget and gave up two-thirds of the way through. A strip of pink LED tape's been half burnt-out since spring. The laminated menu still calls the well whiskey <em>"Chrome."</em></p>
+    <p>The jukebox doesn't take the theme seriously. Neither does anyone who actually drinks here.</p>
+    <p>It works anyway. Cheap drinks, a back room nobody bothers you in, and a bartender who stopped asking questions a long time ago. It's where you go when you need to be somewhere that isn't home, isn't work, and isn't anywhere anyone's looking for you.</p>
+    <p><a href="the-screen-battlemap-player.html" target="_blank" rel="noopener">See the floor plan &rarr;</a></p>
+    <p><strong>It's where Marcus told you to meet him tonight.</strong></p>
+    <p>Marcus works the door at three different bars depending on the night, none of them this one, and always seems to have just come off a shift whenever anyone needs him. He remembers your coffee order. He shows up on moving day without being asked twice. He has exactly one bad tattoo he still won't explain and a laugh you can hear from the parking lot. He's the reason a scattered handful of near-strangers somehow all still have each other's numbers &mdash; the center of gravity for a group that would've drifted apart years ago without him holding the middle.</p>
+    <p>He does not send five-text paragraphs at ten PM on a Tuesday. That's the part that gets you moving.</p>
+
+    <div class="texts">
+      <div class="text-bubble">yo you around tonight??</div>
+      <div class="text-bubble">like actually need you at The Screen</div>
+      <div class="text-bubble">not a bit lol im serious</div>
+      <div class="text-bubble">I found something. can't explain it over text, just come ok?? 10pm. bring the others</div>
+      <div class="text-bubble">trust me on this one</div>
+      <div class="text-meta">Marcus &middot; 9:47&ndash;9:49 PM</div>
+    </div>
+
+    <p class="after-texts">Whatever it is, it's Marcus &mdash; so you go.</p>
+  </div>
+
+  <div class="ooc-note">
+    <div class="ooc-label">For You, the Player &mdash; Not Your Character</div>
+    <h3>Before you build</h3>
+    <p>Build your full character in the Character Creator &mdash; Attributes, Skills, Boons, Resources, and yes, Gifts. Don't hold back on the one you're excited about. That's the character you're building toward.</p>
+    <p>Your character doesn't know any of that yet. Right now, they're exactly who they look like on paper before anything else kicks in: someone with a job, a few debts, a couple of good friends, and no reason on earth to think tonight is different from any other night at The Screen.</p>
+    <p>Some honest, grounded places to start a Concept: a service-industry lifer who knows every regular by name. A rideshare driver who's memorized every back street the GPS doesn't know. A musician between gigs. A grad student running out of scholarship money. Nobody needs to be special yet. That's the point.</p>
+    <ul>
+      <li>Play the ordinary fully &mdash; the job, the debts, the reason you keep coming back to this bar.</li>
+      <li>Don't telegraph anything. Your character has no reason to feel like tonight is different.</li>
+      <li>Whatever happens next, it lands harder if we all believe &mdash; for a little while &mdash; that nothing's coming.</li>
+    </ul>
+  </div>
+
+</main>
+
+<footer>Backwater Static &middot; a 20 Below campaign</footer>
+<script src="assets/js/site-nav.js"></script>

@@ -1,0 +1,72 @@
+{%- comment -%}
+Backwater Static's navigation. One copy, included on every page.
+
+Paths are relative: this is a project page served from
+/Backwater_Static/, not a domain root, and every page sits flat at the
+top level - so "gm-guide.html" resolves correctly and would not survive
+being made absolute.
+
+A page names its section in front matter as nav_section - one of:
+players, gm, sessions, reference, maps. The matching menu gets
+aria-current. Leaving it out is fine; nothing is then marked.
+
+Styles: assets/css/site-nav.css. Behaviour: assets/js/site-nav.js.
+{%- endcomment -%}
+<nav class="site-nav">
+  <a class="brand" href="index.html">Backwater <span class="flicker">Static</span></a>
+  <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" id="navToggle">&#9776;</button>
+  <ul class="nav-links" id="navLinks">
+    <li class="has-dropdown">
+      <a href="player-primer.html"{% if page.nav_section == "players" %} aria-current="page"{% endif %}>Players</a>
+      <ul class="dropdown">
+        <li><a href="player-primer.html">Session Zero &mdash; Player Primer</a></li>
+        <li><a href="the-party.html">The Party</a></li>
+        <li><a href="tone-and-safety-tools.html">Tone &amp; Safety Tools</a></li>
+        <li><a href="virtual-tabletop-tools.html">Virtual Tabletop Tools</a></li>
+      </ul>
+    </li>
+    <li class="has-dropdown">
+      <a href="gm-guide.html"{% if page.nav_section == "gm" %} aria-current="page"{% endif %}>GM Guide<span class="gm-pill">GM</span></a>
+      <ul class="dropdown">
+        <li><a href="gm-guide.html">The GM Guide</a></li>
+        <li><a href="truth-behind-the-curtain.html">The Truth Behind the Curtain</a></li>
+        <li><a href="the-organization.html">The Organization</a></li>
+        <li><a href="the-inciting-incident.html">The Inciting Incident</a></li>
+        <li><a href="the-city-behind-the-map.html">The City, Behind the Map</a></li>
+        <li><a href="campaign-arc-and-threads.html">Campaign Arc &amp; Threads</a></li>
+      </ul>
+    </li>
+    <li class="has-dropdown">
+      <a href="session-1-outline.html"{% if page.nav_section == "sessions" %} aria-current="page"{% endif %}>Sessions<span class="gm-pill">GM</span></a>
+      <ul class="dropdown">
+        <li><a href="session-1-outline.html">Session 1 Outline</a></li>
+        <li><a href="session-1-gm-notes.html">Session 1 GM Notes</a></li>
+      </ul>
+    </li>
+    <li class="has-dropdown">
+      <a href="npc-roster.html"{% if page.nav_section == "reference" %} aria-current="page"{% endif %}>Reference<span class="gm-pill">GM</span></a>
+      <ul class="dropdown">
+        <li><a href="npc-roster.html">NPC Roster</a></li>
+        <li><a href="adversary-index.html">Adversary Index</a></li>
+        <li><a href="anomalous-objects.html">Anomalous Objects</a></li>
+        <li><a href="locations-index.html">Locations Index</a></li>
+        <li><a href="events-index.html">Events Index</a></li>
+      </ul>
+    </li>
+    <li class="has-dropdown">
+      <a href="city-map.html"{% if page.nav_section == "maps" %} aria-current="page"{% endif %}>Maps &amp; Handouts</a>
+      <ul class="dropdown">
+        <li><a href="city-map.html">City Map</a></li>
+        <li><a href="the-screen-battlemap.html">The Screen, Battle Map</a></li>
+        <li><a href="the-screen-battlemap-player.html">The Screen &mdash; Player Version</a></li>
+        <li><a href="repository-23-floorplan.html">Repository 23, Floor Plans</a></li>
+        <li><a href="site-23-floorplan.html">Site 23, Floor Plans</a></li>
+        <li><a href="evidence-la-1147.html">Case File LA-1147</a></li>
+        <li><a href="evidence-scorched-napkin.html">Scorched Napkin</a></li>
+        <li><a href="evidence-torn-ledger-page.html">Torn Ledger Page</a></li>
+      </ul>
+    </li>
+    <li><a href="license.html"{% if page.nav_section == "license" %} aria-current="page"{% endif %}>License</a></li>
+    <li><a class="home-link" href="https://20belowrpg.com/home.html">&larr; 20 Below</a></li>
+  </ul>
+</nav>

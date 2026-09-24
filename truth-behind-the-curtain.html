@@ -1,0 +1,242 @@
+---
+nav_section: gm
+---
+<!doctype html>
+<meta charset="utf-8" />
+<title>Backwater Static</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e1512;
+    --bg-vignette: #080f10;
+    --raised: #171f19;
+    --raised-2: #1d2621;
+    --line: #33362a;
+    --ink: #ece6d4;
+    --ink-dim: #a49a80;
+    --ink-faint: #6b6552;
+    --brass: #c39a5a;
+    --brass-dim: #7a6438;
+    --brass-glow: rgba(195, 154, 90, 0.35);
+    --static: #ef5c93;
+    --cyan: #3fe0c9;
+    --cyan-dim: #276a5f;
+    --dread: #c46a52;
+    --dread-dim: #6b3226;
+
+    --display: "Fraunces", Georgia, serif;
+    --body: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --mono: "Space Mono", "Courier New", monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    background-image:
+      radial-gradient(ellipse 120% 60% at 50% -10%, rgba(195, 154, 90, 0.07), transparent 60%),
+      radial-gradient(ellipse 100% 40% at 85% 100%, rgba(196, 106, 82, 0.05), transparent 55%);
+  }
+
+  ::selection { background: var(--dread-dim); color: var(--ink); }
+  a { color: var(--brass); }
+
+  .back-link {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-faint);
+    text-decoration: none;
+    padding: 1rem 1.5rem 0;
+  }
+
+  .back-link:hover { color: var(--brass); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--dread); outline-offset: 3px; }
+
+  h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+  p { margin: 0 0 1.15em; }
+  p:last-child { margin-bottom: 0; }
+
+  .wrap { max-width: 700px; margin: 0 auto; padding: 0 1.5rem; }
+
+  .hero {
+    position: relative;
+    padding: 5rem 0 3.5rem;
+    text-align: center;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-vignette);
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(180deg, rgba(233, 227, 211, 0.024) 0px, rgba(233, 227, 211, 0.024) 1px, transparent 1px, transparent 3px);
+    mix-blend-mode: overlay;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--dread);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.75rem, 7.5vw, 5rem);
+    font-weight: 600;
+    font-style: italic;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .hero h1 .glow {
+    color: var(--static);
+    text-shadow: 0 0 18px rgba(239, 92, 147, 0.45), 0 0 40px rgba(239, 92, 147, 0.15);
+    animation: flicker 6s infinite steps(1, end);
+  }
+
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    92% { opacity: 1; }
+    93% { opacity: 0.35; }
+    94% { opacity: 1; }
+    95% { opacity: 0.5; }
+    96% { opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero h1 .glow { animation: none; }
+  }
+
+  .hero-subtitle {
+    margin-top: 1.1rem;
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+
+  .hero-rule {
+    width: 3.5rem;
+    height: 2px;
+    margin: 2.25rem auto 0;
+    background: linear-gradient(90deg, transparent, var(--brass), transparent);
+  }
+
+  .hero-warning {
+    margin-top: 1.75rem;
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--dread);
+    border: 1px solid var(--dread-dim);
+    background: rgba(196, 106, 82, 0.08);
+    border-radius: 999px;
+    padding: 0.4rem 1.1rem;
+  }
+
+  main { padding: 4rem 0 6rem; }
+
+  .intro {
+    color: var(--ink-dim);
+    font-size: 0.98rem;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .truth-section {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .truth-section:first-of-type { padding-top: 0; }
+  .truth-section:last-of-type { border-bottom: none; padding-bottom: 0; }
+
+  .truth-section h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-style: italic;
+    color: var(--brass);
+    margin-bottom: 1.1rem;
+  }
+
+  .truth-section p {
+    font-size: 0.98rem;
+  }
+
+  .truth-section strong { color: var(--ink); }
+
+  footer {
+    text-align: center;
+    padding: 3.5rem 1.5rem 4rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brass-dim);
+    border-top: 1px solid var(--line);
+  }
+</style>
+<link rel="stylesheet" href="assets/css/site-nav.css" />
+{% include site-nav.html %}
+
+<a class="back-link" href="gm-guide.html">&larr; Back to GM Guide</a>
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">Confidential &middot; GM Eyes Only</div>
+    <h1>The Truth Behind the <span class="glow">Curtain</span></h1>
+    <div class="hero-subtitle">GM Reference &middot; Chapter 01</div>
+    <div class="hero-rule"></div>
+    <div class="hero-warning">Everything on this page is spoilers</div>
+  </div>
+</div>
+
+<main class="wrap">
+  <p class="intro">Everything on this page is already established canon, scattered across the Player Primer, Session 1, and the Adversary Index - this chapter exists so the GM has it in one place, stated plainly, instead of having to reconstruct it from five documents mid-session.</p>
+
+  <div class="truth-section">
+    <h2>What Actually Happened</h2>
+    <p>The Inciting Incident, a bodyless possessing entity, escaped Foundation containment during a transport handoff - a courier skipped Section 4 (Anchor Field Integrity Verification) on the checklist before departure. It drifted host to host until it settled into Marcus: well-liked, socially central, exactly the kind of host who could pull a group together fast. Its agenda in Marcus was singular - make the people who caged it pay, and it needed hands it couldn't grow on its own to do that. It called the party to The Screen using Marcus's own voice and relationships, mid-breach exited him in a flash that granted every PC present their Gift simultaneously and killed the Foundation response team caught in it, then moved on to wherever it goes next once Marcus stopped being useful.</p>
+  </div>
+
+  <div class="truth-section">
+    <h2>The Inciting Incident, Plainly</h2>
+    <p>No body, no fixed agenda, no personality of its own beyond whatever the current host and "what the story needs" shape it into. It has 6 Fate Tokens always available and spends them via Kotodama in service of moving the plot forward - a narrative tool of last resort for the GM, not a character with consistent motives to roleplay session to session.</p>
+  </div>
+
+  <div class="truth-section">
+    <h2>The Foundation, Plainly</h2>
+    <p>Runs closer to Warehouse 13 than a pure containment bureau - they field-issue anomalous items to operational teams as tools, not just study them in a vault. The burned incident log found at the scene hints at real scale beyond this one containment: multiple active Site designations, multiple active Subject designations in the region, a "Gulf Coast breach" referenced but unexplained. The Foundation now knows specific new Gifted individuals exist in New Orleans and is missing a response team.</p>
+  </div>
+
+  <div class="truth-section">
+    <h2>Why the PCs Have Gifts</h2>
+    <p>Deliberate, not incidental. The Incident wanted them Gifted - it revels in chaos, and a handful of ordinary people suddenly holding real power is exactly the kind of unpredictable variable it wants loose in the world. Revenge against the Foundation gave it a specific target; chaos is the deeper, more constant hunger underneath that - the same appetite that makes it a genuinely unreliable narrator of its own motives from host to host (see its <strong>No Fixed Agenda</strong> trait in the Adversary Index). Granting Gifts wasn't a side effect of the Flash. The Flash was built to do exactly that.</p>
+  </div>
+
+  <div class="truth-section">
+    <h2>What Players Know vs. What's True</h2>
+    <p>The Player Primer deliberately never mentions Gifts or the Incident - characters go into Session 1 believing tonight is ordinary. Session 1 itself is where the gap closes for them. This chapter is the GM's own answer key underneath all of it.</p>
+  </div>
+</main>
+
+<footer>Backwater Static &middot; GM Guide &middot; do not share with players</footer>
+<script src="assets/js/site-nav.js"></script>

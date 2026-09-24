@@ -1,0 +1,761 @@
+---
+nav_section: maps
+---
+<!doctype html>
+<meta charset="utf-8" />
+<title>Backwater Static</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e1512;
+    --bg-vignette: #080f10;
+    --raised: #171f19;
+    --raised-2: #1d2621;
+    --line: #33362a;
+    --ink: #ece6d4;
+    --ink-dim: #a49a80;
+    --ink-faint: #6b6552;
+    --brass: #c39a5a;
+    --brass-dim: #7a6438;
+    --static: #ef5c93;
+    --cyan: #3fe0c9;
+    --cyan-dim: #276a5f;
+    --dread: #c46a52;
+    --dread-dim: #6b3226;
+
+    --display: "Fraunces", Georgia, serif;
+    --body: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --mono: "Space Mono", "Courier New", monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    background-image:
+      radial-gradient(ellipse 120% 60% at 50% -10%, rgba(195, 154, 90, 0.07), transparent 60%),
+      radial-gradient(ellipse 100% 40% at 85% 100%, rgba(196, 106, 82, 0.05), transparent 55%);
+  }
+
+  ::selection { background: var(--dread-dim); color: var(--ink); }
+  a { color: var(--brass); }
+
+  .back-link {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-faint);
+    text-decoration: none;
+    padding: 1rem 1.5rem 0;
+  }
+
+  .back-link:hover { color: var(--brass); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--dread); outline-offset: 3px; }
+
+  h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+  p { margin: 0 0 1.15em; }
+  p:last-child { margin-bottom: 0; }
+
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+
+  .hero {
+    position: relative;
+    padding: 5rem 0 3.5rem;
+    text-align: center;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-vignette);
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(180deg, rgba(233, 227, 211, 0.024) 0px, rgba(233, 227, 211, 0.024) 1px, transparent 1px, transparent 3px);
+    mix-blend-mode: overlay;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--dread);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.25rem, 6.5vw, 4rem);
+    font-weight: 600;
+    font-style: italic;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .hero-subtitle {
+    margin-top: 1.1rem;
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+
+  .hero-rule {
+    width: 3.5rem;
+    height: 2px;
+    margin: 2.25rem auto 0;
+    background: linear-gradient(90deg, transparent, var(--brass), transparent);
+  }
+
+  .hero-warning {
+    margin-top: 1.75rem;
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--dread);
+    border: 1px solid var(--dread-dim);
+    background: rgba(196, 106, 82, 0.08);
+    border-radius: 999px;
+    padding: 0.4rem 1.1rem;
+  }
+
+  main { padding: 3rem 0 6rem; }
+
+  .intro {
+    color: var(--ink-dim);
+    font-size: 0.98rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .intro strong { color: var(--ink); }
+  .intro a { color: var(--brass); }
+
+  .source-note {
+    background: var(--raised);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--cyan-dim);
+    border-radius: 3px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 2.5rem;
+    font-size: 0.9rem;
+    color: var(--ink-dim);
+  }
+
+  .source-note strong { color: var(--cyan); }
+
+  .plan-wrap {
+    background: var(--raised);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    overflow-x: auto;
+  }
+
+  .plan-wrap svg { display: block; margin: 0 auto; max-width: 100%; height: auto; }
+
+  .toc {
+    background: var(--raised);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2.5rem;
+    font-size: 0.92rem;
+  }
+
+  .toc-title {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dread);
+    margin-bottom: 0.6rem;
+  }
+
+  .toc ul { columns: 2; margin: 0; padding-left: 1.1rem; }
+  .toc li { margin-bottom: 0.3rem; }
+
+  .building-section {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--line);
+    scroll-margin-top: 1.5rem;
+  }
+
+  .building-section:last-of-type { border-bottom: none; padding-bottom: 0; }
+
+  .building-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dread);
+    margin-bottom: 0.4rem;
+  }
+
+  .building-section h2 {
+    font-size: 1.7rem;
+    font-weight: 600;
+    font-style: italic;
+    color: var(--brass);
+    margin-bottom: 0.6rem;
+  }
+
+  .building-dims {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    color: var(--ink-faint);
+    margin-bottom: 1.25rem;
+  }
+
+  .room-key {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 0.85rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .room-card {
+    background: var(--raised);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--brass-dim);
+    border-radius: 3px;
+    padding: 0.85rem 1.05rem;
+  }
+
+  .room-card.cell { border-left-color: var(--dread); }
+  .room-card.storage { border-left-color: var(--cyan-dim); }
+
+  .room-num {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    color: var(--brass);
+    margin-bottom: 0.3rem;
+  }
+
+  .room-name {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+
+  .room-card p { font-size: 0.88rem; color: var(--ink-dim); margin: 0; }
+
+  .building-flavor { font-size: 0.98rem; }
+  .building-flavor strong { color: var(--ink); }
+
+  footer {
+    text-align: center;
+    padding: 3.5rem 1.5rem 4rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brass-dim);
+    border-top: 1px solid var(--line);
+  }
+</style>
+<link rel="stylesheet" href="assets/css/site-nav.css" />
+{% include site-nav.html %}
+
+<a class="back-link" href="the-organization.html">&larr; Back to The Organization</a>
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">Confidential &middot; GM Eyes Only</div>
+    <h1>Repository 23, <span style="color: var(--static);">Floor Plans</span></h1>
+    <div class="hero-subtitle">Companion &middot; Internal Maps</div>
+    <div class="hero-rule"></div>
+    <div class="hero-warning">Everything on this page is spoilers</div>
+  </div>
+</div>
+
+<main class="wrap">
+  <p class="intro">Real, room-by-room ground-floor plans for all seven buildings of Repository 23, distinct from the city-level <a href="city-map.html">city map</a> - this is what's actually inside the building. Companion to <a href="the-organization.html">The Organization</a>.</p>
+
+  <div class="source-note">
+    <strong>Built to real scale.</strong> Every building's footprint is drawn directly from the actual Market Street Power Plant's real per-building ground-floor square footage (1600 South Peters St., New Orleans - the real 2020 commercial listing for the property this campaign uses as Repository 23). Building shapes and sizes are real, at a consistent 4 px/ft on every diagram below (each has its own scale bar). The interior room divisions, corridors, and everything the Foundation actually keeps in them are new GM content laid over that real shell - the original building's real interior layout isn't public record.
+  </div>
+
+  <div class="toc">
+    <div class="toc-title">On This Page</div>
+    <ul>
+      <li><a href="#building-6">Building 6 - Storage Hall, North</a></li>
+      <li><a href="#building-5">Building 5 - The Power Hall</a></li>
+      <li><a href="#building-1">Building 1 - Administration</a></li>
+      <li><a href="#building-7">Building 7 - Storage Hall, South</a></li>
+      <li><a href="#building-4">Building 4 - Loading &amp; Receiving</a></li>
+      <li><a href="#building-2">Building 2 - Reinforced Cell Wing</a></li>
+      <li><a href="#building-3">Building 3 - Storage Annex</a></li>
+    </ul>
+  </div>
+
+  <!-- ================= BUILDING 6 ================= -->
+  <div class="building-section" id="building-6">
+    <div class="building-eyebrow">Storage</div>
+    <h2>Building 6</h2>
+    <div class="building-dims">138 ft x 138 ft - 19,067 sq ft - largest single structure in the complex</div>
+    <div class="plan-wrap">
+      <svg viewBox="0 0 620 640" xmlns="http://www.w3.org/2000/svg" font-family="Space Mono, monospace">
+        <rect x="0" y="0" width="620" height="640" fill="#0e1512" />
+        <rect x="10" y="10" width="552" height="552" fill="#171f19" stroke="#c39a5a" stroke-width="2" />
+
+        <!-- Central spine corridor, 12ft wide (48px), running N-S - drawn before the title so it doesn't paint over it -->
+        <rect x="262" y="10" width="48" height="552" fill="#0e1512" stroke="#33362a" />
+        <text x="286" y="330" fill="#6b6552" font-size="10" text-anchor="middle" transform="rotate(-90 286 330)">MAIN CORRIDOR</text>
+
+        <text x="286" y="45" fill="#c39a5a" font-size="20" font-weight="700" text-anchor="middle">BUILDING 6</text>
+
+        <!-- West bays: 6-A (top), 6-B (bottom) -->
+        <rect x="10" y="65" width="252" height="248" fill="none" stroke="#276a5f" stroke-width="1.5" />
+        <text x="136" y="195" fill="#3fe0c9" font-size="16" font-weight="700" text-anchor="middle">6-A</text>
+        <rect x="10" y="313" width="252" height="249" fill="none" stroke="#276a5f" stroke-width="1.5" />
+        <text x="136" y="443" fill="#3fe0c9" font-size="16" font-weight="700" text-anchor="middle">6-B</text>
+
+        <!-- East bays: 6-C (top), 6-D (bottom) -->
+        <rect x="310" y="65" width="252" height="248" fill="none" stroke="#276a5f" stroke-width="1.5" />
+        <text x="436" y="195" fill="#3fe0c9" font-size="16" font-weight="700" text-anchor="middle">6-C</text>
+        <rect x="310" y="313" width="200" height="249" fill="none" stroke="#276a5f" stroke-width="1.5" />
+        <text x="410" y="443" fill="#3fe0c9" font-size="16" font-weight="700" text-anchor="middle">6-D</text>
+        <rect x="510" y="480" width="52" height="82" fill="none" stroke="#c39a5a" stroke-width="1.5" />
+        <text x="536" y="518" fill="#c39a5a" font-size="10" text-anchor="middle">6-E</text>
+
+        <!-- Doors: 6-A, 6-B into corridor (east wall); 6-C, 6-D into corridor (west wall); 6-E into 6-D -->
+        <rect x="258" y="182" width="8" height="20" fill="#c39a5a" />
+        <rect x="258" y="429" width="8" height="20" fill="#c39a5a" />
+        <rect x="306" y="182" width="8" height="20" fill="#c39a5a" />
+        <rect x="306" y="429" width="8" height="20" fill="#c39a5a" />
+        <rect x="506" y="512" width="8" height="20" fill="#c39a5a" />
+
+        <!-- Entrance, south wall -->
+        <rect x="270" y="558" width="32" height="8" fill="#c39a5a" />
+        <text x="286" y="588" fill="#6b6552" font-size="10" text-anchor="middle">ENTRANCE (from yard)</text>
+
+        <!-- Scale bar: 4px/ft -->
+        <g transform="translate(440, 610)">
+          <line x1="0" y1="0" x2="80" y2="0" stroke="#ece6d4" stroke-width="2" />
+          <line x1="0" y1="-4" x2="0" y2="4" stroke="#ece6d4" stroke-width="2" />
+          <line x1="80" y1="-4" x2="80" y2="4" stroke="#ece6d4" stroke-width="2" />
+          <text x="40" y="-8" fill="#ece6d4" font-size="10" text-anchor="middle">20 ft / 6 m</text>
+        </g>
+      </svg>
+    </div>
+    <div class="room-key">
+      <div class="room-card storage">
+        <div class="room-num">6-A</div>
+        <div class="room-name">Storage Aisles 1-12</div>
+        <p>Shelving and shipping containers, the oldest cataloged stock in the complex - some crates predate Entergy's ownership of the building itself.</p>
+      </div>
+      <div class="room-card storage">
+        <div class="room-num">6-B</div>
+        <div class="room-name">Storage Aisles 13-24</div>
+        <p>More of the same, flat bureaucratic labeling regardless of what's actually inside a given crate.</p>
+      </div>
+      <div class="room-card storage">
+        <div class="room-num">6-C</div>
+        <div class="room-name">Storage Aisles 25-36</div>
+        <p>Denser shelving, narrower aisles - the overflow section, added as the catalog outgrew the original layout.</p>
+      </div>
+      <div class="room-card storage">
+        <div class="room-num">6-D</div>
+        <div class="room-name">Storage Aisles 37-48</div>
+        <p>The newest intake, closest to Building 4's loading dock - freshly logged items sit here before being reshelved deeper into the hall.</p>
+      </div>
+      <div class="room-card">
+        <div class="room-num">6-E</div>
+        <div class="room-name">Inventory Desk</div>
+        <p>A single desk and a terminal - whoever's on cataloging duty tonight, and the only person in the building who could tell you where anything actually is.</p>
+      </div>
+    </div>
+    <p class="building-flavor">The largest structure in the complex, and the most literal read on "row after row of numbered crates and shipping containers stretching further than a flashlight beam reaches." No windows at ground level; overhead sodium lighting on a timer, half of it burned out and never replaced.</p>
+    <p><a href="repository-23-building-6.html" target="_blank" rel="noopener">Player-Facing Map (no room contents) &rarr;</a></p>
+  </div>
+
+  <!-- ================= BUILDING 5 ================= -->
+  <div class="building-section" id="building-5">
+    <div class="building-eyebrow">Industrial / Vertical Access</div>
+    <h2>Building 5</h2>
+    <div class="building-dims">132 ft x 132 ft - 17,396 sq ft ground floor - 5 stories above, the two smokestacks visible from the city map</div>
+    <div class="plan-wrap">
+      <svg viewBox="0 0 600 610" xmlns="http://www.w3.org/2000/svg" font-family="Space Mono, monospace">
+        <rect x="0" y="0" width="600" height="610" fill="#0e1512" />
+        <rect x="10" y="10" width="528" height="528" fill="#171f19" stroke="#c39a5a" stroke-width="2" />
+        <text x="274" y="45" fill="#c39a5a" font-size="20" font-weight="700" text-anchor="middle">BUILDING 5</text>
+        <circle cx="240" cy="-8" r="10" fill="none" />
+
+        <!-- Turbine floor: most of the space -->
+        <rect x="10" y="65" width="418" height="473" fill="none" stroke="#7a6438" stroke-width="1.5" />
+        <text x="219" y="300" fill="#c39a5a" font-size="18" font-weight="700" text-anchor="middle">5-1</text>
+        <!-- Catwalk suggestion lines -->
+        <line x1="10" y1="150" x2="428" y2="150" stroke="#33362a" stroke-dasharray="4 4" />
+        <line x1="10" y1="300" x2="428" y2="300" stroke="#33362a" stroke-dasharray="4 4" />
+        <line x1="10" y1="450" x2="428" y2="450" stroke="#33362a" stroke-dasharray="4 4" />
+        <text x="219" y="145" fill="#6b6552" font-size="9" text-anchor="middle">catwalk overhead</text>
+
+        <!-- Stairwell/elevator core, NE corner -->
+        <rect x="438" y="65" width="100" height="140" fill="none" stroke="#c46a52" stroke-width="2" />
+        <text x="488" y="130" fill="#c46a52" font-size="13" font-weight="700" text-anchor="middle">5-2</text>
+        <text x="488" y="150" fill="#a49a80" font-size="9" text-anchor="middle">stairs &amp; lift</text>
+
+        <!-- Control room, SE corner -->
+        <rect x="438" y="215" width="100" height="120" fill="none" stroke="#276a5f" stroke-width="1.5" />
+        <text x="488" y="270" fill="#3fe0c9" font-size="13" font-weight="700" text-anchor="middle">5-3</text>
+        <text x="488" y="288" fill="#a49a80" font-size="9" text-anchor="middle">control room</text>
+
+        <!-- Doors: 5-2 and 5-3 open onto the turbine floor -->
+        <rect x="434" y="127" width="8" height="20" fill="#c39a5a" />
+        <rect x="434" y="267" width="8" height="20" fill="#c39a5a" />
+
+        <!-- Entrance -->
+        <rect x="200" y="530" width="32" height="8" fill="#c39a5a" />
+        <text x="219" y="562" fill="#6b6552" font-size="10" text-anchor="middle">ENTRANCE</text>
+
+        <g transform="translate(420, 580)">
+          <line x1="0" y1="0" x2="80" y2="0" stroke="#ece6d4" stroke-width="2" />
+          <line x1="0" y1="-4" x2="0" y2="4" stroke="#ece6d4" stroke-width="2" />
+          <line x1="80" y1="-4" x2="80" y2="4" stroke="#ece6d4" stroke-width="2" />
+          <text x="40" y="-8" fill="#ece6d4" font-size="10" text-anchor="middle">20 ft / 6 m</text>
+        </g>
+      </svg>
+    </div>
+    <div class="room-key">
+      <div class="room-card">
+        <div class="room-num">5-1</div>
+        <div class="room-name">Turbine Floor</div>
+        <p>Cavernous and mostly open, the real machinery from the plant's working decades still standing where it was left - housings, pipework, a rusted crane rail overhead. Catwalks cross above at three levels.</p>
+      </div>
+      <div class="room-card">
+        <div class="room-num">5-2</div>
+        <div class="room-name">Stairwell &amp; Freight Lift</div>
+        <p>The only way up to Floors 2 through 5. The lift is loud enough to announce anyone using it a full floor early.</p>
+      </div>
+      <div class="room-card">
+        <div class="room-num">5-3</div>
+        <div class="room-name">Control Room</div>
+        <p>Foundation instrumentation grafted onto the original power-plant control panels - half the dials are decorative now, the rest actually matter.</p>
+      </div>
+    </div>
+    <p class="building-flavor">The most vertical space in the complex and the one visible from outside - the two smokestacks on the <a href="city-map.html">city map</a> both belong to this building. What's on Floors 2-5 is deliberately left open for the GM to fill in per-scene.</p>
+    <p><a href="repository-23-building-5.html" target="_blank" rel="noopener">Player-Facing Map (no room contents) &rarr;</a></p>
+  </div>
+
+  <!-- ================= BUILDING 1 ================= -->
+  <div class="building-section" id="building-1">
+    <div class="building-eyebrow">Administration</div>
+    <h2>Building 1</h2>
+    <div class="building-dims">198 ft 8 in x 78 ft - 15,557 sq ft - single story, the real dimension straight off the property's own floor plan</div>
+    <div class="plan-wrap">
+      <svg viewBox="0 0 850 400" xmlns="http://www.w3.org/2000/svg" font-family="Space Mono, monospace">
+        <rect x="0" y="0" width="850" height="400" fill="#0e1512" />
+        <rect x="10" y="10" width="796" height="312" fill="#171f19" stroke="#c39a5a" stroke-width="2" />
+        <text x="408" y="40" fill="#c39a5a" font-size="18" font-weight="700" text-anchor="middle">BUILDING 1</text>
+
+        <!-- Corridor down the middle -->
+        <rect x="10" y="146" width="796" height="40" fill="#0e1512" stroke="#33362a" />
+        <text x="408" y="170" fill="#6b6552" font-size="9" text-anchor="middle">MAIN CORRIDOR</text>
+
+        <!-- North side rooms -->
+        <rect x="10" y="60" width="260" height="86" fill="none" stroke="#c46a52" stroke-width="1.5" />
+        <text x="140" y="106" fill="#c46a52" font-size="14" font-weight="700" text-anchor="middle">1-1</text>
+        <rect x="270" y="60" width="266" height="86" fill="none" stroke="#7a6438" stroke-width="1.5" />
+        <text x="403" y="106" fill="#c39a5a" font-size="14" font-weight="700" text-anchor="middle">1-2</text>
+        <rect x="536" y="60" width="270" height="86" fill="none" stroke="#7a6438" stroke-width="1.5" />
+        <text x="671" y="106" fill="#c39a5a" font-size="14" font-weight="700" text-anchor="middle">1-3</text>
+
+        <!-- South side rooms -->
+        <rect x="10" y="186" width="260" height="86" fill="none" stroke="#7a6438" stroke-width="1.5" />
+        <text x="140" y="232" fill="#c39a5a" font-size="14" font-weight="700" text-anchor="middle">1-4</text>
+        <rect x="270" y="186" width="266" height="86" fill="none" stroke="#7a6438" stroke-width="1.5" />
+        <text x="403" y="232" fill="#c39a5a" font-size="14" font-weight="700" text-anchor="middle">1-5</text>
+        <rect x="536" y="186" width="270" height="86" fill="none" stroke="#7a6438" stroke-width="1.5" />
+        <text x="671" y="232" fill="#c39a5a" font-size="14" font-weight="700" text-anchor="middle">1-6</text>
+
+        <!-- Doors: every room opens onto the main corridor -->
+        <rect x="130" y="142" width="20" height="8" fill="#c39a5a" />
+        <rect x="393" y="142" width="20" height="8" fill="#c39a5a" />
+        <rect x="661" y="142" width="20" height="8" fill="#c39a5a" />
+        <rect x="130" y="182" width="20" height="8" fill="#c39a5a" />
+        <rect x="393" y="182" width="20" height="8" fill="#c39a5a" />
+        <rect x="661" y="182" width="20" height="8" fill="#c39a5a" />
+
+        <rect x="392" y="318" width="32" height="8" fill="#c39a5a" />
+        <text x="408" y="345" fill="#6b6552" font-size="10" text-anchor="middle">ENTRANCE</text>
+
+        <g transform="translate(660, 370)">
+          <line x1="0" y1="0" x2="80" y2="0" stroke="#ece6d4" stroke-width="2" />
+          <line x1="0" y1="-4" x2="0" y2="4" stroke="#ece6d4" stroke-width="2" />
+          <line x1="80" y1="-4" x2="80" y2="4" stroke="#ece6d4" stroke-width="2" />
+          <text x="40" y="-8" fill="#ece6d4" font-size="10" text-anchor="middle">20 ft / 6 m</text>
+        </g>
+      </svg>
+    </div>
+    <div class="room-key">
+      <div class="room-card cell">
+        <div class="room-num">1-1</div>
+        <div class="room-name">Intake &amp; Processing</div>
+        <p>Where a newly recovered anomaly or Gifted individual is logged before anything else happens to them - the first room, the coldest paperwork.</p>
+      </div>
+      <div class="room-card">
+        <div class="room-num">1-2</div>
+        <div class="room-name">Records Room</div>
+        <p>Filing cabinets and a locked server rack. The paper half of the catalog that the storage halls' terminals only reference.</p>
+      </div>
+      <div class="room-card">
+        <div class="room-num">1-3</div>
+        <div class="room-name">Site Director's Office</div>
+        <p>Better furniture than anywhere else in the building. The only room with a real window, facing the yard rather than the street.</p>
+      </div>
+      <div class="room-card cell">
+        <div class="room-num">1-4</div>
+        <div class="room-name">Interview Room</div>
+        <p>A table, two chairs, a mirror that isn't just a mirror. Used for exactly what it sounds like.</p>
+      </div>
+      <div class="room-card">
+        <div class="room-num">1-5</div>
+        <div class="room-name">Break Room</div>
+        <p>A coffee maker older than most of the staff. Genuinely mundane - the one room in the building that could belong to any office anywhere.</p>
+      </div>
+      <div class="room-card">
+        <div class="room-num">1-6</div>
+        <div class="room-name">Restrooms &amp; Supply Closet</div>
+        <p>Exactly what it says.</p>
+      </div>
+    </div>
+    <p class="building-flavor">The mundane bureaucratic layer sitting on top of everything else in the complex - the building someone signs into before they ever see a crate or a cell.</p>
+    <p><a href="repository-23-building-1.html" target="_blank" rel="noopener">Player-Facing Map (no room contents) &rarr;</a></p>
+  </div>
+
+  <!-- ================= BUILDING 7 ================= -->
+  <div class="building-section" id="building-7">
+    <div class="building-eyebrow">Storage</div>
+    <h2>Building 7</h2>
+    <div class="building-dims">81 ft x 82 ft - 6,618 sq ft - detached from the main cluster</div>
+    <div class="plan-wrap">
+      <svg viewBox="0 0 380 400" xmlns="http://www.w3.org/2000/svg" font-family="Space Mono, monospace">
+        <rect x="0" y="0" width="380" height="400" fill="#0e1512" />
+        <rect x="10" y="10" width="324" height="328" fill="#171f19" stroke="#c39a5a" stroke-width="2" />
+
+        <!-- Corridor drawn before the title so it doesn't paint over it -->
+        <rect x="150" y="10" width="24" height="328" fill="#0e1512" stroke="#33362a" />
+
+        <text x="172" y="40" fill="#c39a5a" font-size="17" font-weight="700" text-anchor="middle">BUILDING 7</text>
+
+        <rect x="10" y="55" width="140" height="283" fill="none" stroke="#276a5f" stroke-width="1.5" />
+        <text x="80" y="200" fill="#3fe0c9" font-size="16" font-weight="700" text-anchor="middle">7-A</text>
+
+        <rect x="174" y="55" width="160" height="283" fill="none" stroke="#276a5f" stroke-width="1.5" />
+        <text x="254" y="200" fill="#3fe0c9" font-size="16" font-weight="700" text-anchor="middle">7-B</text>
+
+        <!-- Doors: 7-A and 7-B into corridor -->
+        <rect x="146" y="186" width="8" height="20" fill="#c39a5a" />
+        <rect x="170" y="186" width="8" height="20" fill="#c39a5a" />
+
+        <rect x="146" y="330" width="28" height="8" fill="#c39a5a" />
+        <text x="160" y="358" fill="#6b6552" font-size="10" text-anchor="middle">ENTRANCE</text>
+
+        <g transform="translate(220, 380)">
+          <line x1="0" y1="0" x2="60" y2="0" stroke="#ece6d4" stroke-width="2" />
+          <line x1="0" y1="-4" x2="0" y2="4" stroke="#ece6d4" stroke-width="2" />
+          <line x1="60" y1="-4" x2="60" y2="4" stroke="#ece6d4" stroke-width="2" />
+          <text x="30" y="-8" fill="#ece6d4" font-size="10" text-anchor="middle">15 ft / 4.5 m</text>
+        </g>
+      </svg>
+    </div>
+    <div class="room-key">
+      <div class="room-card storage">
+        <div class="room-num">7-A</div>
+        <div class="room-name">Storage Aisles 49-60</div>
+        <p>Overflow from Building 6, mostly bulk items too large for standard shelving.</p>
+      </div>
+      <div class="room-card storage">
+        <div class="room-num">7-B</div>
+        <div class="room-name">Storage Aisles 61-72</div>
+        <p>The most recently built-out section - still smells like fresh lumber under everything else.</p>
+      </div>
+    </div>
+    <p class="building-flavor">Sits by itself, a real gap between it and the rest of the complex - anyone crossing to or from it is briefly outside, in the yard, exposed.</p>
+    <p><a href="repository-23-building-7.html" target="_blank" rel="noopener">Player-Facing Map (no room contents) &rarr;</a></p>
+  </div>
+
+  <!-- ================= BUILDING 4 ================= -->
+  <div class="building-section" id="building-4">
+    <div class="building-eyebrow">Logistics</div>
+    <h2>Building 4</h2>
+    <div class="building-dims">57 ft x 57 ft - 3,245 sq ft - the connective tissue between the yard and Buildings 6 and 2</div>
+    <div class="plan-wrap">
+      <svg viewBox="0 0 280 300" xmlns="http://www.w3.org/2000/svg" font-family="Space Mono, monospace">
+        <rect x="0" y="0" width="280" height="300" fill="#0e1512" />
+        <rect x="10" y="10" width="228" height="228" fill="#171f19" stroke="#c39a5a" stroke-width="2" />
+        <text x="124" y="40" fill="#c39a5a" font-size="16" font-weight="700" text-anchor="middle">BUILDING 4</text>
+
+        <rect x="10" y="55" width="228" height="130" fill="none" stroke="#7a6438" stroke-width="1.5" />
+        <text x="124" y="125" fill="#c39a5a" font-size="15" font-weight="700" text-anchor="middle">4-1</text>
+        <text x="124" y="145" fill="#a49a80" font-size="9" text-anchor="middle">loading dock</text>
+
+        <rect x="10" y="185" width="228" height="53" fill="none" stroke="#7a6438" stroke-width="1.5" />
+        <text x="124" y="215" fill="#c39a5a" font-size="13" font-weight="700" text-anchor="middle">4-2</text>
+
+        <!-- Door: 4-1 into 4-2 -->
+        <rect x="114" y="181" width="20" height="8" fill="#c39a5a" />
+
+        <rect x="0" y="55" width="10" height="60" fill="#c39a5a" />
+        <text x="-6" y="88" fill="#6b6552" font-size="8" text-anchor="middle" transform="rotate(-90 -6 88)">ROLL-UP DOOR (to yard)</text>
+
+        <g transform="translate(160, 270)">
+          <line x1="0" y1="0" x2="40" y2="0" stroke="#ece6d4" stroke-width="2" />
+          <line x1="0" y1="-4" x2="0" y2="4" stroke="#ece6d4" stroke-width="2" />
+          <line x1="40" y1="-4" x2="40" y2="4" stroke="#ece6d4" stroke-width="2" />
+          <text x="20" y="-8" fill="#ece6d4" font-size="10" text-anchor="middle">10 ft / 3 m</text>
+        </g>
+      </svg>
+    </div>
+    <div class="room-key">
+      <div class="room-card">
+        <div class="room-num">4-1</div>
+        <div class="room-name">Loading Dock</div>
+        <p>A single vehicle bay facing the rail spur and yard - where anything new actually arrives at Repository 23.</p>
+      </div>
+      <div class="room-card">
+        <div class="room-num">4-2</div>
+        <div class="room-name">Receiving Office</div>
+        <p>Intake paperwork and a quarantine shelf - newly arrived items sit here before anyone decides whether they're safe to reshelve properly.</p>
+      </div>
+    </div>
+    <p class="building-flavor">Small, plain, and easy to overlook - which is exactly why it's the building most player characters would actually breach through, if this ever comes to that.</p>
+    <p><a href="repository-23-building-4.html" target="_blank" rel="noopener">Player-Facing Map (no room contents) &rarr;</a></p>
+  </div>
+
+  <!-- ================= BUILDING 2 ================= -->
+  <div class="building-section" id="building-2">
+    <div class="building-eyebrow">Reinforced Cell Wing</div>
+    <h2>Building 2</h2>
+    <div class="building-dims">81 ft x 82 ft - 6,614 sq ft - a separate security doctrine from everything around it, on purpose</div>
+    <div class="plan-wrap">
+      <svg viewBox="0 0 380 400" xmlns="http://www.w3.org/2000/svg" font-family="Space Mono, monospace">
+        <rect x="0" y="0" width="380" height="400" fill="#0e1512" />
+        <rect x="10" y="10" width="324" height="328" fill="#171f19" stroke="#c46a52" stroke-width="2" />
+        <text x="172" y="40" fill="#c46a52" font-size="17" font-weight="700" text-anchor="middle">BUILDING 2</text>
+
+        <!-- Guard station at entrance (south) -->
+        <rect x="120" y="288" width="90" height="50" fill="none" stroke="#c39a5a" stroke-width="1.5" />
+        <text x="165" y="317" fill="#c39a5a" font-size="11" font-weight="700" text-anchor="middle">2-1</text>
+
+        <!-- Corridor -->
+        <rect x="150" y="55" width="30" height="233" fill="#0e1512" stroke="#33362a" />
+
+        <!-- Cells: 3 per side -->
+        <rect x="10" y="55" width="130" height="75" fill="none" stroke="#c46a52" stroke-width="1.5" />
+        <text x="75" y="97" fill="#c46a52" font-size="12" font-weight="700" text-anchor="middle">2-2</text>
+        <rect x="10" y="132" width="130" height="75" fill="none" stroke="#c46a52" stroke-width="1.5" />
+        <text x="75" y="174" fill="#c46a52" font-size="12" font-weight="700" text-anchor="middle">2-3</text>
+        <rect x="10" y="209" width="130" height="79" fill="none" stroke="#c46a52" stroke-width="1.5" />
+        <text x="75" y="253" fill="#c46a52" font-size="12" font-weight="700" text-anchor="middle">2-4</text>
+
+        <rect x="190" y="55" width="144" height="75" fill="none" stroke="#c46a52" stroke-width="1.5" />
+        <text x="262" y="97" fill="#c46a52" font-size="12" font-weight="700" text-anchor="middle">2-5</text>
+        <rect x="190" y="132" width="144" height="75" fill="none" stroke="#c46a52" stroke-width="1.5" />
+        <text x="262" y="174" fill="#c46a52" font-size="12" font-weight="700" text-anchor="middle">2-6</text>
+        <rect x="190" y="209" width="144" height="79" fill="none" stroke="#c46a52" stroke-width="1.5" />
+        <text x="262" y="253" fill="#c46a52" font-size="12" font-weight="700" text-anchor="middle">2-7</text>
+
+        <!-- Doors: every cell into the corridor, guard station into the corridor -->
+        <rect x="140" y="83" width="10" height="20" fill="#c39a5a" />
+        <rect x="140" y="160" width="10" height="20" fill="#c39a5a" />
+        <rect x="140" y="239" width="10" height="20" fill="#c39a5a" />
+        <rect x="180" y="83" width="10" height="20" fill="#c39a5a" />
+        <rect x="180" y="160" width="10" height="20" fill="#c39a5a" />
+        <rect x="180" y="239" width="10" height="20" fill="#c39a5a" />
+        <rect x="155" y="284" width="20" height="8" fill="#c39a5a" />
+
+        <rect x="150" y="330" width="30" height="8" fill="#c39a5a" />
+        <text x="165" y="358" fill="#6b6552" font-size="10" text-anchor="middle">ENTRANCE</text>
+
+        <g transform="translate(220, 380)">
+          <line x1="0" y1="0" x2="60" y2="0" stroke="#ece6d4" stroke-width="2" />
+          <line x1="0" y1="-4" x2="0" y2="4" stroke="#ece6d4" stroke-width="2" />
+          <line x1="60" y1="-4" x2="60" y2="4" stroke="#ece6d4" stroke-width="2" />
+          <text x="30" y="-8" fill="#ece6d4" font-size="10" text-anchor="middle">15 ft / 4.5 m</text>
+        </g>
+      </svg>
+    </div>
+    <div class="room-key">
+      <div class="room-card">
+        <div class="room-num">2-1</div>
+        <div class="room-name">Guard Station</div>
+        <p>Whoever's posted here sees the whole corridor and every cell door from one seat. Never left unattended.</p>
+      </div>
+      <div class="room-card cell">
+        <div class="room-num">2-2 through 2-7</div>
+        <div class="room-name">Reinforced Cells</div>
+        <p>Six cells, three per side, each built to a different containment doctrine than the shelving in the rest of the complex - this is the one space genuinely built to keep something in, not just store it.</p>
+      </div>
+    </div>
+    <p class="building-flavor">Woven through the storage floors elsewhere in the complex, but physically isolated here as its own building - built for anomalous and Gifted prisoners nothing standard could hold.</p>
+    <p><a href="repository-23-building-2.html" target="_blank" rel="noopener">Player-Facing Map (no room contents) &rarr;</a></p>
+  </div>
+
+  <!-- ================= BUILDING 3 ================= -->
+  <div class="building-section" id="building-3">
+    <div class="building-eyebrow">Storage</div>
+    <h2>Building 3</h2>
+    <div class="building-dims">59 ft x 59 ft - 3,501 sq ft - the smallest structure in the complex</div>
+    <div class="plan-wrap">
+      <svg viewBox="0 0 280 300" xmlns="http://www.w3.org/2000/svg" font-family="Space Mono, monospace">
+        <rect x="0" y="0" width="280" height="300" fill="#0e1512" />
+        <rect x="10" y="10" width="236" height="236" fill="#171f19" stroke="#c39a5a" stroke-width="2" />
+        <text x="128" y="40" fill="#c39a5a" font-size="16" font-weight="700" text-anchor="middle">BUILDING 3</text>
+
+        <rect x="10" y="55" width="236" height="140" fill="none" stroke="#276a5f" stroke-width="1.5" />
+        <text x="128" y="130" fill="#3fe0c9" font-size="15" font-weight="700" text-anchor="middle">3-A</text>
+
+        <rect x="10" y="195" width="236" height="51" fill="none" stroke="#7a6438" stroke-width="1.5" />
+        <text x="128" y="225" fill="#c39a5a" font-size="12" font-weight="700" text-anchor="middle">3-B</text>
+
+        <!-- Doors: 3-A into 3-B; entrance on south wall -->
+        <rect x="118" y="191" width="20" height="8" fill="#c39a5a" />
+        <rect x="112" y="242" width="32" height="8" fill="#c39a5a" />
+
+        <g transform="translate(140, 278)">
+          <line x1="0" y1="0" x2="40" y2="0" stroke="#ece6d4" stroke-width="2" />
+          <line x1="0" y1="-4" x2="0" y2="4" stroke="#ece6d4" stroke-width="2" />
+          <line x1="40" y1="-4" x2="40" y2="4" stroke="#ece6d4" stroke-width="2" />
+          <text x="20" y="-8" fill="#ece6d4" font-size="10" text-anchor="middle">10 ft / 3 m</text>
+        </g>
+      </svg>
+    </div>
+    <div class="room-key">
+      <div class="room-card storage">
+        <div class="room-num">3-A</div>
+        <div class="room-name">Storage Annex</div>
+        <p>Overflow and miscellaneous cataloging - the items that didn't fit the standard shelving in Buildings 6 or 7.</p>
+      </div>
+      <div class="room-card">
+        <div class="room-num">3-B</div>
+        <div class="room-name">Cataloging Nook</div>
+        <p>A desk wedged into the smallest building in the complex - whoever draws this shift works alone.</p>
+      </div>
+    </div>
+    <p class="building-flavor">The smallest structure in the complex, tucked against Building 2's own footprint - easy for a player character to miss entirely on a first pass.</p>
+    <p><a href="repository-23-building-3.html" target="_blank" rel="noopener">Player-Facing Map (no room contents) &rarr;</a></p>
+  </div>
+
+</main>
+
+<footer>Backwater Static &middot; GM Guide &middot; do not share with players</footer>
+<script src="assets/js/site-nav.js"></script>

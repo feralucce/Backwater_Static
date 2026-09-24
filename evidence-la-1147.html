@@ -1,0 +1,345 @@
+---
+nav_section: maps
+---
+<!doctype html>
+<meta charset="utf-8" />
+<title>Backwater Static</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #ded6bc;
+    --paper-raised: #f2ecd8;
+    --paper-shadow: #c7bd9c;
+    --ink: #2a2620;
+    --ink-dim: #5c5646;
+    --redact: #1c1a16;
+    --stamp-red: #a3382b;
+    --line: #b8ac83;
+
+    --stamp: "Special Elite", "Courier New", monospace;
+    --type: "Courier Prime", "Courier New", monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--type);
+    font-size: 1rem;
+    line-height: 1.6;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(0,0,0,0.015) 0px, rgba(0,0,0,0.015) 1px, transparent 1px, transparent 3px),
+      radial-gradient(ellipse 140% 80% at 50% 0%, rgba(0,0,0,0.06), transparent 60%);
+  }
+
+  a { color: var(--stamp-red); }
+
+  .wrap { max-width: 720px; margin: 0 auto; padding: 3rem 1.25rem 5rem; }
+
+  .masthead {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .masthead .eyebrow {
+    font-family: var(--type);
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+
+  .masthead h1 {
+    font-family: var(--stamp);
+    font-weight: 400;
+    font-size: 1.9rem;
+    margin: 0.4rem 0 0;
+    letter-spacing: 0.02em;
+  }
+
+  .stamp {
+    display: inline-block;
+    font-family: var(--stamp);
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+    color: var(--stamp-red);
+    border: 3px solid var(--stamp-red);
+    border-radius: 4px;
+    padding: 0.35rem 1.1rem;
+    transform: rotate(-3deg);
+    margin: 1.5rem auto 3rem;
+    display: block;
+    width: fit-content;
+    opacity: 0.85;
+  }
+
+  .doc {
+    background: var(--paper-raised);
+    border: 1px solid var(--line);
+    box-shadow: 0 10px 26px rgba(0,0,0,0.18), 0 1px 0 rgba(255,255,255,0.3) inset;
+    padding: 2rem 2.1rem 2.25rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+
+  .doc:nth-child(odd) { transform: rotate(-0.4deg); }
+  .doc:nth-child(even) { transform: rotate(0.35deg); }
+
+  .doc-kicker {
+    font-family: var(--type);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 0.6rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .doc h2 {
+    font-family: var(--stamp);
+    font-weight: 400;
+    font-size: 1.3rem;
+    margin: 0 0 1rem;
+    letter-spacing: 0.01em;
+  }
+
+  .field {
+    margin-bottom: 0.85rem;
+    font-size: 0.92rem;
+  }
+
+  .field:last-child { margin-bottom: 0; }
+
+  .field-label {
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .redact {
+    display: inline-block;
+    background: var(--redact);
+    color: var(--redact);
+    border-radius: 2px;
+    padding: 0 0.4em;
+    user-select: none;
+  }
+
+  .checklist {
+    list-style: none;
+    margin: 0.75rem 0;
+    padding: 0;
+  }
+
+  .checklist li {
+    font-size: 0.92rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .checklist .fail {
+    color: var(--stamp-red);
+    font-weight: 700;
+  }
+
+  .handwritten {
+    font-family: "Special Elite", cursive;
+    font-size: 0.95rem;
+    color: #3a3226;
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--line);
+    transform: rotate(-0.6deg);
+  }
+
+  .badge-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .badge {
+    border: 1px dashed var(--line);
+    padding: 1rem 1.1rem;
+    font-size: 0.88rem;
+  }
+
+  .badge-photo {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    background: repeating-linear-gradient(45deg, #c7bd9c, #c7bd9c 6px, #b8ac83 6px, #b8ac83 12px);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--type);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--ink-dim);
+    text-align: center;
+    padding: 0.5rem;
+  }
+
+  .status-box {
+    font-size: 0.9rem;
+    margin-top: 1rem;
+  }
+
+  .status-box span {
+    display: inline-block;
+    margin-right: 1rem;
+  }
+
+  .item-desc {
+    font-style: italic;
+    color: var(--ink-dim);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .doc.burned {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 76%, 95% 80%, 98% 87%, 90% 90%, 94% 96%, 84% 100%, 0% 100%);
+    position: relative;
+  }
+
+  .doc.burned::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(200deg, transparent 58%, rgba(50, 26, 12, 0.18) 76%, rgba(28, 14, 6, 0.55) 90%, rgba(14, 6, 2, 0.85) 100%);
+    mix-blend-mode: multiply;
+  }
+
+  .burned-gap {
+    display: inline-block;
+    background: linear-gradient(100deg, rgba(70, 38, 18, 0.9), rgba(24, 12, 5, 0.95));
+    color: transparent;
+    border-radius: 1px;
+    padding: 0 0.35em;
+    user-select: none;
+  }
+
+  footer {
+    text-align: center;
+    font-family: var(--type);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    padding: 2rem 1.5rem 3rem;
+  }
+
+  @media (max-width: 560px) {
+    .doc { padding: 1.5rem 1.4rem 1.75rem; }
+    .badge-row { grid-template-columns: 1fr; }
+  }
+</style>
+<link rel="stylesheet" href="assets/css/site-nav.css" />
+{% include site-nav.html %}
+
+<div class="wrap">
+  <div class="masthead">
+    <div class="eyebrow">Recovered &middot; The Screen &middot; Tonight</div>
+    <h1>Case File LA-1147</h1>
+  </div>
+  <div class="stamp">CLASSIFIED &mdash; FOUNDATION INTERNAL</div>
+
+  <div class="doc">
+    <div class="doc-kicker">Field Dossier &middot; Restricted &mdash; Operational Eyes Only</div>
+    <h2>Subject Designation: LA-1147</h2>
+    <div class="field"><span class="field-label">Containment Class:</span> NOMAD &mdash; non-corporeal, requires a living host, cannot be conventionally contained without a host-compatible vessel or an active suppression field.</div>
+    <div class="field"><span class="field-label">Description:</span> Subject is a non-corporeal intelligence capable of assuming complete control of a living host without physiological trace. Subject exhibits no consistent behavioral pattern between hosts; motive and objective appear to derive from host psychology rather than an intrinsic agenda. Subject has demonstrated the ability to manifest localized reality-distortion effects through host action. Frequency and scale not yet fully quantified.</div>
+    <div class="field"><span class="field-label">Containment History:</span> Subject was successfully contained following a prior incident (see cross-reference, restricted). Subject was held in suppressed stasis via Anchor-pattern containment field pending transfer to long-term storage.</div>
+    <div class="field"><span class="field-label">Incident Log &mdash; Transport Failure:</span> Subject escaped containment during transport between facilities. Preliminary review indicates transport checklist Section 4 (Anchor Field Integrity Verification) was not completed prior to departure. Subject is presumed to have exited containment during the transport window. Personnel responsible have been remanded to <span class="redact">██████████</span>.</div>
+    <div class="field"><span class="field-label">Current Status:</span> Subject has been tracked to New Orleans, LA. Confirmed current host: <strong>Marcus <span class="redact">████████</span></strong>. Host is a private citizen with no prior Foundation contact. Subject's behavior in this host suggests a retaliatory motive against Foundation personnel. Recommend immediate extraction team deployment. Anchor-pattern extraction equipment authorized for this operation &mdash; see item requisition, this file.</div>
+    <div class="field"><span class="field-label">Threat Assessment:</span> Subject itself poses no direct physical threat (non-corporeal, cannot act without a host). Risk is entirely a function of host capability and subject's demonstrated retaliatory intent. Host is believed to be an unwilling vessel &mdash; treat as Class-2 hostile for the duration of this operation, without prejudice.</div>
+  </div>
+
+  <div class="doc">
+    <div class="doc-kicker">Foundation Logistics &middot; Form TL-4 (Chain of Custody)</div>
+    <h2>Containment Transport Manifest</h2>
+    <div class="field"><span class="field-label">Transport ID:</span> TL-4-0891</div>
+    <div class="field"><span class="field-label">Origin:</span> Site 23 Holding Annex</div>
+    <div class="field"><span class="field-label">Destination:</span> <span class="redact">████████████████</span> (Long-Term Storage)</div>
+    <div class="field"><span class="field-label">Containment Unit:</span> Anchor-pattern Suppression Case, Model C</div>
+    <div class="field"><span class="field-label">Subject:</span> LA-1147 (see attached dossier)</div>
+    <ul class="checklist">
+      <li>&#9745; Section 1 &mdash; Unit structural integrity confirmed</li>
+      <li>&#9745; Section 2 &mdash; Suppression field power cell at full charge</li>
+      <li>&#9745; Section 3 &mdash; Subject sedation/stasis confirmed</li>
+      <li class="fail">&#9744; Section 4 &mdash; Anchor Field Integrity Verification &mdash; NOT COMPLETED</li>
+      <li>&#9745; Section 5 &mdash; Transport route cleared</li>
+    </ul>
+    <div class="field"><span class="field-label">Authorizing Signature:</span> ______________________ (illegible)</div>
+    <div class="field"><span class="field-label">Transport Officer:</span> ______________________ (illegible)</div>
+    <div class="handwritten">"ran behind schedule, skipped 4, unit read green on the case display anyway. wont happen again" &mdash; initials illegible</div>
+  </div>
+
+  <div class="doc">
+    <div class="doc-kicker">Foundation Field Credentials &middot; Recovered on Scene</div>
+    <h2>Personnel</h2>
+    <div class="badge-row">
+      <div class="badge">
+        <div class="badge-photo">PHOTO<br>ON FILE</div>
+        <div class="field"><span class="field-label">Name:</span> Agent D. Okafor</div>
+        <div class="field"><span class="field-label">Role:</span> Field Agent</div>
+        <div class="field"><span class="field-label">Clearance:</span> Level 2</div>
+        <div class="field"><span class="field-label">ID:</span> FA-2214</div>
+      </div>
+      <div class="badge">
+        <div class="badge-photo">PHOTO<br>ON FILE</div>
+        <div class="field"><span class="field-label">Name:</span> Agent T. Reyes</div>
+        <div class="field"><span class="field-label">Role:</span> Breacher</div>
+        <div class="field"><span class="field-label">Clearance:</span> Level 2</div>
+        <div class="field"><span class="field-label">ID:</span> BR-0871</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc">
+    <div class="doc-kicker">Foundation Logistics &middot; Field Item Requisition</div>
+    <h2>Item Requisition &mdash; Operation LA-1147 Retrieval</h2>
+    <div class="field"><span class="field-label">Item:</span> Portable Severance Anchor (Unit 7)</div>
+    <div class="field"><span class="field-label">Function:</span> Forcibly severs a non-corporeal entity from a living host without lethal harm to the host. Single use per charge cycle. Requires direct physical contact with host for a minimum of 4 seconds.</div>
+    <div class="field"><span class="field-label">Authorizing Officer:</span> ______________________</div>
+    <div class="field"><span class="field-label">Checked Out:</span> tonight &nbsp;&middot;&nbsp; <span class="field-label">Return By:</span> end of operation</div>
+    <div class="status-box">
+      <span>&#9744; Returned</span>
+      <span>&#9744; Lost</span>
+      <span>&#9744; Deployed</span>
+      <span style="color: var(--stamp-red); font-weight: 700;">&#9745; UNACCOUNTED FOR</span>
+    </div>
+  </div>
+
+  <div class="doc">
+    <div class="doc-kicker">Recovered Item &middot; Still in Case</div>
+    <h2>Portable Severance Anchor</h2>
+    <p class="item-desc">A heavy steel cuff, a Foundation property tag riveted to the inside. A small charge-indicator light on its face is still lit, though nobody clamped it onto anyone tonight &mdash; going by the state of it, it's still coiled in its case, safety catch untouched. Whatever it was supposed to do, it never got the chance.</p>
+  </div>
+
+  <div class="doc">
+    <div class="doc-kicker">Recovered Item &middot; Found Behind the Bar</div>
+    <h2>Deck of Playing Cards</h2>
+    <p class="item-desc">Fifty-two cards, corners worn soft from decades of shuffling, the pattern on the backs rubbed past recognition. Somebody was doing a reading tonight &mdash; the cards are still laid out in a half-finished spread on the bar top, like whoever was reading them never got to the last card.</p>
+  </div>
+
+  <div class="doc burned">
+    <div class="doc-kicker">Recovered On Scene &middot; Fire-Damaged &mdash; Origin Unclear</div>
+    <h2>Partial Incident Log</h2>
+    <p class="item-desc">Most of the page is gone &mdash; ash and a curled, blackened edge where the rest used to be. What's left reads like an internal status report, though there's no way to tell who wrote it or when.</p>
+    <div class="field">&hellip;requesting priority transfer of <span class="burned-gap">████████</span> personnel following the Gulf Coast <span class="burned-gap">██████</span> breach&hellip;</div>
+    <div class="field">&hellip;Site 46 reports <span class="burned-gap">████████████</span> activity has roughly tripled since <span class="burned-gap">████</span>&hellip;</div>
+    <div class="field">&hellip;current active designations in the region: LA-1147, LA-0892, <span class="burned-gap">██████</span>&hellip;</div>
+    <div class="field">&hellip;advise Site 23 that regional oversight has been <span class="burned-gap">████████</span> pending review&hellip;</div>
+    <div class="handwritten">the rest is ash.</div>
+  </div>
+
+</div>
+
+<footer>Backwater Static &middot; Session 1 Evidence</footer>
+<script src="assets/js/site-nav.js"></script>

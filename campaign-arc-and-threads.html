@@ -1,0 +1,340 @@
+---
+nav_section: gm
+---
+<!doctype html>
+<meta charset="utf-8" />
+<title>Backwater Static</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e1512;
+    --bg-vignette: #080f10;
+    --raised: #171f19;
+    --raised-2: #1d2621;
+    --line: #33362a;
+    --ink: #ece6d4;
+    --ink-dim: #a49a80;
+    --ink-faint: #6b6552;
+    --brass: #c39a5a;
+    --brass-dim: #7a6438;
+    --brass-glow: rgba(195, 154, 90, 0.35);
+    --static: #ef5c93;
+    --cyan: #3fe0c9;
+    --cyan-dim: #276a5f;
+    --dread: #c46a52;
+    --dread-dim: #6b3226;
+
+    --display: "Fraunces", Georgia, serif;
+    --body: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --mono: "Space Mono", "Courier New", monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    background-image:
+      radial-gradient(ellipse 120% 60% at 50% -10%, rgba(195, 154, 90, 0.07), transparent 60%),
+      radial-gradient(ellipse 100% 40% at 85% 100%, rgba(196, 106, 82, 0.05), transparent 55%);
+  }
+
+  ::selection { background: var(--dread-dim); color: var(--ink); }
+  a { color: var(--brass); }
+
+  .back-link {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-faint);
+    text-decoration: none;
+    padding: 1rem 1.5rem 0;
+  }
+
+  .back-link:hover { color: var(--brass); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--dread); outline-offset: 3px; }
+
+  h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+  p { margin: 0 0 1.15em; }
+  p:last-child { margin-bottom: 0; }
+
+  .wrap { max-width: 700px; margin: 0 auto; padding: 0 1.5rem; }
+
+  .hero {
+    position: relative;
+    padding: 5rem 0 3.5rem;
+    text-align: center;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-vignette);
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(180deg, rgba(233, 227, 211, 0.024) 0px, rgba(233, 227, 211, 0.024) 1px, transparent 1px, transparent 3px);
+    mix-blend-mode: overlay;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--dread);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.75rem, 7.5vw, 5rem);
+    font-weight: 600;
+    font-style: italic;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .hero h1 .glow {
+    color: var(--static);
+    text-shadow: 0 0 18px rgba(239, 92, 147, 0.45), 0 0 40px rgba(239, 92, 147, 0.15);
+    animation: flicker 6s infinite steps(1, end);
+  }
+
+  @keyframes flicker {
+    0%, 100% { opacity: 1; }
+    92% { opacity: 1; }
+    93% { opacity: 0.35; }
+    94% { opacity: 1; }
+    95% { opacity: 0.5; }
+    96% { opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero h1 .glow { animation: none; }
+  }
+
+  .hero-subtitle {
+    margin-top: 1.1rem;
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+
+  .hero-rule {
+    width: 3.5rem;
+    height: 2px;
+    margin: 2.25rem auto 0;
+    background: linear-gradient(90deg, transparent, var(--brass), transparent);
+  }
+
+  .hero-warning {
+    margin-top: 1.75rem;
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--dread);
+    border: 1px solid var(--dread-dim);
+    background: rgba(196, 106, 82, 0.08);
+    border-radius: 999px;
+    padding: 0.4rem 1.1rem;
+  }
+
+  main { padding: 4rem 0 6rem; }
+
+  .intro {
+    color: var(--ink-dim);
+    font-size: 0.98rem;
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .truth-section {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .truth-section:first-of-type { padding-top: 0; }
+  .truth-section:last-of-type { border-bottom: none; padding-bottom: 0; }
+
+  .truth-section h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-style: italic;
+    color: var(--brass);
+    margin-bottom: 1.1rem;
+  }
+
+  .truth-section p {
+    font-size: 0.98rem;
+  }
+
+  .truth-section strong { color: var(--ink); }
+
+  .branch-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1.25rem 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .branch {
+    background: var(--raised);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--brass-dim);
+    border-radius: 3px;
+    padding: 1rem 1.25rem;
+  }
+
+  .branch-name {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-bottom: 0.5rem;
+  }
+
+  .branch p {
+    font-size: 0.94rem;
+    margin: 0;
+  }
+
+  .status-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 1.25rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .status-row {
+    display: flex;
+    gap: 0.75rem;
+    align-items: baseline;
+    font-size: 0.94rem;
+  }
+
+  .status-tag {
+    flex-shrink: 0;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    border: 1px solid var(--dread-dim);
+    color: var(--dread);
+  }
+
+  .status-tag.open {
+    border-color: var(--cyan-dim);
+    color: var(--cyan);
+  }
+
+  footer {
+    text-align: center;
+    padding: 3.5rem 1.5rem 4rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brass-dim);
+    border-top: 1px solid var(--line);
+  }
+
+    .designation {
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      opacity: 0.75;
+      margin: -0.4rem 0 0.9rem;
+    }
+</style>
+<link rel="stylesheet" href="assets/css/site-nav.css" />
+{% include site-nav.html %}
+
+<a class="back-link" href="gm-guide.html">&larr; Back to GM Guide</a>
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">Confidential &middot; GM Eyes Only</div>
+    <h1>Campaign Arc &amp; <span class="glow">Threads</span></h1>
+    <div class="hero-subtitle">GM Reference &middot; Chapter 09</div>
+    <div class="hero-rule"></div>
+    <div class="hero-warning">Everything on this page is spoilers</div>
+  </div>
+</div>
+
+<main class="wrap">
+  <p class="intro">What the season is actually building toward, split explicitly into decided threads and genuinely open ones, so nothing here gets mistaken for more settled than it is.</p>
+
+  <div class="truth-section">
+    <h2>Thread: Marcus's Fate</h2>
+    <p>Three branches, not three simultaneous truths - pick one for your table, or reveal ambiguously early and let it stay genuinely unresolved for a while.</p>
+    <ul class="branch-list">
+      <li class="branch">
+        <div class="branch-name">A. Recovered</div>
+        <p>In the chaos of the Session 1 retreat, a Foundation element recovered his unconscious body. Site 23 holds him now, quietly, unpublicized, because he's living evidence of what the Incident was riding. "Find Marcus" becomes "find which Foundation facility has him," building toward Site 23 or Repository 23 as a real target later in the season.</p>
+      </li>
+      <li class="branch">
+        <div class="branch-name">B. Still Ridden</div>
+        <p>The Flash's exit was theater as much as truth - the Incident loves a clean, dramatic break better than a slow fade. It kept a thread in him and took him bodily when it fled the scene, wearing him somewhere outside the city for whatever chaos it's building toward next. Finding Marcus means finding the Incident, and getting him back means fighting for a body that's still occupied.</p>
+      </li>
+      <li class="branch">
+        <div class="branch-name">C. Displaced</div>
+        <p>The Incident genuinely left him, but the leaving wasn't clean. Being host to a bodyless entity, then having it torn free in one Flash, knocked something in him out of alignment - he's free of it, but somewhere he shouldn't be, missing time or missing distance, disoriented and easy for someone worse to find first.</p>
+      </li>
+    </ul>
+  </div>
+
+  <div class="truth-section">
+    <h2>Thread: The Incident, Still Loose</h2>
+    <p>Deliberately open, consistent with <a href="truth-behind-the-curtain.html">chapter 01</a>'s framing - no fixed agenda, revels in chaos, wearing some new host somewhere. Where it is and what it's doing next is GM's call in the moment, not decided here. If branch B above is chosen, this thread and Marcus's thread merge into one.</p>
+  </div>
+
+  <div class="truth-section">
+    <h2>Thread: The Foundation Closes In</h2>
+    <p>The season's escalation shape: <a href="npc-roster.html#case-officer-wendell-broussard">Case Officer Broussard</a>'s investigation (paperwork, quiet questions, no direct contact) as the early pressure, <a href="npc-roster.html#special-agent-odette-chastain">Special Agent Chastain</a>'s personal involvement as the mid-season turn - she starts as an observer, then a conversation, then eventually a confrontation - building toward a real Foundation response once the party's visibility crosses some threshold. No fixed session count; GM's call based on how the table's actually playing it.</p>
+  </div>
+
+  <div class="truth-section">
+    <h2>Thread: Gulf Coast Division &amp; Site 46</h2>
+    <p class="designation"><strong>L-???-840-0046</strong> (reserved) - the individual number is allocated and the origin field is not, because nobody has written down which state the site is in. Allocated numbers are never reissued, so 0046 is spent whether or not the file ever gets filled in.</p>
+    <p>The burned incident log from <a href="evidence-la-1147.html">Case File LA-1147</a> left two lines deliberately unreadable: a "Gulf Coast breach" and Site 46 reporting activity that's "roughly tripled." Both stay genuinely unresolved here - a deliberate unpaid-off hook for later, not a mystery with a secret answer already decided. Build the payoff whenever the season actually needs one.</p>
+  </div>
+
+  <div class="truth-section">
+    <h2>Decided vs. Genuinely Open</h2>
+    <ul class="status-list">
+      <li class="status-row"><span class="status-tag">Decided</span><span>The Foundation's general escalation shape (Broussard, then Chastain, then a full response).</span></li>
+      <li class="status-row"><span class="status-tag open">Open</span><span>Marcus's fate - pick a branch above, or leave it ambiguous.</span></li>
+      <li class="status-row"><span class="status-tag open">Open</span><span>The Incident's current host and destination.</span></li>
+      <li class="status-row"><span class="status-tag open">Open</span><span>What Site 46's activity spike actually is.</span></li>
+      <li class="status-row"><span class="status-tag open">Open</span><span>What happens if the party doesn't go looking for Marcus at all - a real alternate season shape, not a railroad.</span></li>
+    </ul>
+  </div>
+
+  <div class="truth-section">
+    <h2>Using This at the Table</h2>
+    <p>This chapter is a shape, not a script. Pull individual threads forward or let them sit based on what the table's actually engaging with.</p>
+  </div>
+</main>
+
+<footer>Backwater Static &middot; GM Guide &middot; do not share with players</footer>
+<script src="assets/js/site-nav.js"></script>
