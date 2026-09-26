@@ -249,6 +249,42 @@ nav_section: reference
   }
 
   .dossier-line:last-child { margin-bottom: 0; }
+  /* A full NPC: built in the Character Creator, so the card carries the
+     whole build rather than the short stat line the others use. */
+  .dossier-full { border-left-color: var(--cyan-dim); }
+  .el-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.6rem;
+    margin: 0.4rem 0 0.85rem;
+  }
+  .el {
+    background: var(--raised-2);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--el, var(--brass-dim));
+    border-radius: 2px;
+    padding: 0.5rem 0.65rem;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+  }
+  .el-earth { --el: #8a6d4e; }
+  .el-air { --el: #a8c9e0; }
+  .el-fire { --el: #e0663f; }
+  .el-water { --el: #078f9b; }
+  .el-moira { --el: #a06fd1; }
+  .el-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    color: var(--ink);
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+  .el-sub { color: var(--ink-faint); font-weight: 400; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; }
+  .el-val { margin-left: auto; font-size: 1.15rem; color: var(--el); }
+  .el-row { display: flex; justify-content: space-between; color: var(--ink-dim); }
+  .el-row span:last-child { color: var(--cyan); }
+
   .dossier-line strong { color: var(--brass); }
 
   footer {
@@ -294,13 +330,27 @@ nav_section: reference
       <p class="dossier-line"><strong>Traits</strong>: <strong>Noncombatant</strong> - Disadvantage on all attack rolls. An ordinary person; nothing about him was ever the threat.</p>
     </div>
 
-    <div class="dossier" id="junie-prosper">
-      <div class="dossier-name">Junie Prosper</div>
+    <div class="dossier dossier-full" id="junie-prosper">
+      <div class="dossier-name">Junie Prosper <span class="dossier-tag">Full NPC</span></div>
       <p class="dossier-flavor">The Screen's bartender, and not naive about what's underneath the city - she's known for years, the same way any Quarter old-timer eventually does, and she clocked exactly what the PCs' hurried exit meant the night of the breach. Hasn't said anything yet. Waiting to see who comes back and asks the right question first.</p>
-      <p class="dossier-stats"><strong>Soak</strong> 0 &middot; <strong>Attack</strong> 2 &middot; <strong>Defense</strong> 6 &middot; <strong>Health Levels</strong> 3 &middot; <strong>Movement Rate</strong> 7m</p>
-      <p class="dossier-stats"><strong>Potence</strong> 3 &middot; <strong>Initiative</strong> 1 &middot; <strong>Psyche</strong> 1 &middot; <strong>Ferocity</strong> 1 &middot; <strong>Presence</strong> 1 &middot; <strong>Stamina</strong> 4</p>
-      <p class="dossier-line"><strong>Notable Skills</strong>: Occult TN 8, Insight 8 vs. Deception, Perception 9 vs. Stealth, Athletics TN 7</p>
-      <p class="dossier-line"><strong>Traits</strong>: <strong>Knows Who to Ask</strong> - once per session, can point a PC toward a real lead (a name, a place, a rumor) if asked directly and respectfully. <strong>Noncombatant</strong>.</p>
+      <p class="dossier-line"><strong>Concept</strong>: The bartender at The Screen. Not baseline, but not fated, either. <strong>Nature</strong>: Mentor - takes a Fate Token when she stands back so somebody else takes the lesson, the lead or the credit, on a job she could have done faster herself.</p>
+      <div class="el-grid">
+        <div class="el el-earth"><div class="el-head"><span>Earth</span><span class="el-sub">Force</span><span class="el-val">4</span></div><div class="el-row"><span>Soak</span><span>2</span></div><div class="el-row"><span>Potence</span><span>2</span></div></div>
+        <div class="el el-air"><div class="el-head"><span>Air</span><span class="el-sub">Precision</span><span class="el-val">4</span></div><div class="el-row"><span>Initiative</span><span>3</span></div><div class="el-row"><span>Psyche</span><span>1</span></div></div>
+        <div class="el el-fire"><div class="el-head"><span>Fire</span><span class="el-sub">Intensity</span><span class="el-val">4</span></div><div class="el-row"><span>Ferocity</span><span>4</span></div><div class="el-row"><span>Presence</span><span>0</span></div></div>
+        <div class="el el-water"><div class="el-head"><span>Water</span><span class="el-sub">Adaptation</span><span class="el-val">4</span></div><div class="el-row"><span>Stamina</span><span>2</span></div><div class="el-row"><span>Health</span><span>2</span></div></div>
+        <div class="el el-moira"><div class="el-head"><span>Moira</span><span class="el-sub">Fate</span><span class="el-val">4</span></div><div class="el-row"><span>Atropos</span><span>2</span></div><div class="el-row"><span>Klotho</span><span>2</span></div></div>
+      </div>
+      <p class="dossier-stats"><strong>Defense</strong> 8 &middot; <strong>Social Defense</strong> 9 &middot; <strong>Mental Defense</strong> 10 &middot; <strong>Movement Rate</strong> 9m &middot; <strong>Carry</strong> 40 kg</p>
+      <p class="dossier-stats"><strong>Health Levels</strong> 7 &middot; <strong>Poise</strong> 5 &middot; <strong>Sanity</strong> 6 &middot; <strong>Ki</strong> 12 &middot; <strong>Fate Tokens</strong> 5 (holds 6)</p>
+      <p class="dossier-line"><strong>Descriptors</strong>: Soak - Hardy, Unyielding. Potence - Forceful, Wiry. Initiative - Keen, Attentive, Twitchy. Psyche - Calm. Ferocity - Savage, Feral, Fierce, Untamed. Stamina - Tireless, Persistent. Health - Unbreakable, Tenacious. Atropos - Untouchable, Uncanny. Klotho - Charmed, Lucky AF.</p>
+      <p class="dossier-line"><strong>Skills</strong>: Animal Handling (Water) Master &middot; Deception (Fire) Expert &middot; Barter, Charm, Divination (Moira) Trained. Everyman at Trained: Athletics, Bureaucracy, Computer Use, Cooking, Driving, Etiquette, First Aid, Persuasion, Streetwise.</p>
+      <p class="dossier-line"><strong>Attacks</strong>: Element 4 to hit. Baseball bat: 3 dice, Melee. Compact pistol: 3 dice, 15m/40m, 15 rounds. Deception as a Social attack: 5 dice, Fire, against Presence.</p>
+      <p class="dossier-line"><strong>Gift</strong>: <strong>Forcefield</strong>, Level 5 - a shimmering barrier she can raise to make the building safe from incursion for a time. Bubble Barrier: raised as a Normal action, no Ki, over everyone within Near of her, herself included - Hardness 5, Health Levels 4, covering all four Zones. A Gift Check every turn it stays up; failure costs 1 Ki. Once per Scene, 1 Ki restores a depleted barrier to full as a Fast action. <strong>Fortification</strong> - 2 Ki locks down the whole building she is in for a Scene: every way in or out sealed with the barrier&#39;s Hardness and Health Levels, and she knows the instant one is struck. <strong>Limiters</strong>: Visible Shimmer (anyone can see it is up), Cracks Run Deep (she loses 1 Health Level when it loses its last).</p>
+      <p class="dossier-line"><strong>Boon</strong>: <strong>Familiar</strong> (Legendary) - a brass cat statue that looks like a large caracal. A legend in its own right, recognized or feared apart from her; destroyed, it finds its way back.</p>
+      <p class="dossier-line"><strong>Flaws</strong>: <strong>Anxiety 2</strong> - a phobia that triggers avoidance or hesitation when she meets its source. <strong>Dependent 2</strong> - someone who needs regular, real support from her. <strong>Short Fuse 2</strong> - under real provocation she says or does something she regrets, at real if recoverable social cost.</p>
+      <p class="dossier-line"><strong>Resources</strong>: Contacts 3 &middot; Informant Network 2 &middot; Wealth 1. <strong>Gear</strong>: Steady Job Kit (smartphone, multitool, a well-stocked kitchen, clothes good enough for interviews and dates), baseball bat, compact pistol.</p>
+      <p class="dossier-line"><strong>Traits</strong>: <strong>Knows Who to Ask</strong> - once per session, can point a PC toward a real lead (a name, a place, a rumor) if asked directly and respectfully.</p>
     </div>
 
     <div class="dossier" id="reyna-delacroix">
